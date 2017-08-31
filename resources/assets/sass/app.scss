@@ -1,0 +1,27 @@
+// Variables
+@import "variables";
+
+.col.full-height{
+    min-height: 100vh;
+}
+
+.no-margin{
+    margin: 0;
+}
+
+.no-margin-bottom{
+    margin-bottom: 0;
+}
+
+.no-margin-top{
+    margin-top: 0;
+}
+
+.v-align{
+    display: flex;
+    align-items: center;
+}
+
+.logo-text{
+    font-family: 'Dancing Script', cursive;
+}
