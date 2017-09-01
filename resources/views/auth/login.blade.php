@@ -11,10 +11,10 @@
     <div class="row no-margin-bottom">
         <div class="col s12 m6 offset-m3 full-height v-align">
             <div class="row">
-            <div class="col s10 offset-s1 m8 offset-m2 no-padding center-align">
-                <h2 class="logo-text primary-color-text">quibble</h2>
-            </div>
-                <div class="col s10 offset-s1 m8 offset-m2 no-padding">
+                <div class="col s10 offset-s1 m6 offset-m3 no-padding center-align">
+                    <h2 class="logo-text primary-color-text">quibble</h2>
+                </div>
+                <div class="col s10 offset-s1 m6 offset-m3 no-padding">
                     <form action="" method="get">
                         <div class="input-field col s12">
                             <input type="text" name="username" id="">
@@ -29,7 +29,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col s10 offset-s1 m8 offset-m2 ">
+                <div class="col s10 offset-s1 m6 offset-m3 ">
                     <p>
                         <a href="javascript:void(0)">Forgot password?</a>&nbsp;&nbsp;<span class="grey-text text-darken-1">For new account, contact the administrator.</span>
                     </p>

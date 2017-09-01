@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-});
+/*
+*   Login Routes
+*/
+Route::get('accounts/login',"Auth\LoginController@showLoginForm")->name("login");
+Route::post('accounts/login',"Auth\LoginController@login");
+Route::get('accounts/logout',"Auth\LoginController@logout");
+
+
+Route::get('/', "HomeController@show")->name("home");
