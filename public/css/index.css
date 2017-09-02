@@ -10,6 +10,16 @@
   margin-bottom: 0;
 }
 
+.container-border {
+  background-color: 
+  /*background-color: teal lighten-3
+  font-weight: bolder;
+  border-style : solid;
+  border-width: 2px;
+  border-radius: 20px;
+  border-color: teal;*/
+}
+
 .no-margin-top {
   margin-top: 0;
 }
@@ -25,5 +35,7 @@
 
 .logo-text {
   font-family: 'Dancing Script', cursive;
+
+
 }
 
