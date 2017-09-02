@@ -182,6 +182,8 @@ return [
         *   JWT Service Provider
         */
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+
+        Zizaco\Entrust\EntrustServiceProvider::class,
     ],
 
     /*
@@ -233,7 +235,9 @@ return [
 
         //3rd party
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
-        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        
     ],
 
 ];
