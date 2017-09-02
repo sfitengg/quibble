@@ -1,12 +1,13 @@
 # quibble
 Quibble is a system which allows you to calculate various attainment level achieved by a teacher.
-# Pre-requisites
-1. Nodejs
-2. Composer
-3. Laravel installed via composer
+
 # Installation
-1. Fork this repository
-2. Install node packages
+1. Nodejs - [Download]()https://nodejs.org/)
+2. Composer - [Download](https://getcomposer.org/download/)
+3. Laravel installed via composer
+   >composer global require "laravel/installer"
+4. Fork this repository
+5. Install node packages
    >npm install
-3. Install composer packages
-   >php composer.phar install
+6. Install composer packages
+   >composer update
