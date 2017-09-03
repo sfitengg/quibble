@@ -25,5 +25,7 @@ Quibble is a system which allows you to calculate various attainment level achie
    ```
 
 2. Open CLI in your project folder and type
-   > php artisan migrate
-   > php artisan db:seed
+   ```
+   php artisan migrate
+   php artisan db:seed
+   ```
