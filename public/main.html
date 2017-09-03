@@ -17,11 +17,14 @@
 
         <nav>
           <div class="nav-wrapper teal">
-            <a href="#" class="brand-logo">Logo</a>
+            <a href="#" data-position="right" class="brand-logo tooltipped logo-text"
+             data-delay="700" data-tooltip="Select a subject -> Select the test -> Select the student to update/view marks"> &nbspquibble</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li><a href="#!">Sass</a></li>
-              <li><a href="#!">Components</a></li>
-              <li><a href="#!">JavaScript</a></li>
+              
+ 
+              <li><a href="#!">More</a></li>
+              <li><a href="#!"><i class="material-icons right">account_circle</i> Logout</a></li>
+              
             </ul>
           </div>
         </nav>
@@ -30,25 +33,38 @@
 
       <main>
 
-        <!--  ********side nav   ************-->
+          <div class="row" id="main-section">
+            <div class="col s3 section-partition" id="one">
+             
+              <div class="app-header-text" id="one-head">Select Subjects </div>
+              <div class="collection" id="one-body">
+                
+              </div>            
 
-        <ul id="slide-out" class="side-nav">
-    <li><div class="user-view">
-      <div class="background">
-        <img src="images/office.jpg">
-      </div>
-      <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
-      <a href="#!name"><span class="white-text name">John Doe</span></a>
-      <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-    </div></li>
-    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-    <li><a href="#!">Second Link</a></li>
-    <li><div class="divider"></div></li>
-    <li><a class="subheader">Subheader</a></li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-  </ul>
-  <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+            </div>
+            <div class="col s3 section-partition"id="two">
+              <div class="app-header-text" id="two-head">Select Test</div>
+              <div class="collection" id="two-body">
+              
+              </div>
 
+           
+            </div>
+            <div class="col s3 section-partition" id="three">
+              <div class="app-header-text" id="three-head">Select Student </div>
+              <div class="collection" id="three-body">
+                
+              </div>
+             
+            </div>
+            <div class="col s3 section-partition" id="four">
+              <div class="app-header-text" id="four-head">Marks</div>
+              <div class="collection" id="four-body">
+                
+              </div>
+             
+            </div>
+          </div>
 
       </main>
       <footer>
@@ -56,15 +72,15 @@
       </footer>
       
 
-
-
-
-
       <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>  
+      <script type="text/javascript" src="js/main.js"></script>
       <script type="text/javascript">
-         $(".button-collapse").sideNav();
+        $(document).ready(function(){
+          loadSubjects();
+
+        });
       </script>
     </body>
   </html>

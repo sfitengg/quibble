@@ -1,0 +1,30 @@
+.section-partition{
+	height: 100vh;
+	border-left: solid grey 1px;
+	padding: 0px !important;
+}
+
+#main-section{
+	
+}
+.logo-text {
+  font-family: 'Dancing Script', cursive;
+}
+.app-header-text{
+	font-weight: bolder;
+	font-size: 20px;
+	padding-top: 5px;
+	padding-bottom: 3px;
+	color: teal;
+	border-bottom: solid 1px teal;
+
+}
+
+.subject-list-item{
+	list-style-type: none;
+	color:;
+	font-weight: bold;
+}
+.container-list{
+	padding-top: 5px;
+}
