@@ -13,15 +13,18 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table($this->_TABLE)->truncate();
+        
+                
         $faker = Faker::create();
         for($i=0;$i<10;$i++){
-            DB::table($_TABLE)->insert([
+            DB::table($this->_TABLE)->insert([
                 'name'      => $faker->name,
                 'email'     => $faker->email,
                 'password'  => bcrypt('secret')
             ]);
         }
-        DB::table($_TABLE)->insert([
+        DB::table($this->_TABLE)->insert([
             'name'      => 'Het Shah',
             'email'     => 'htshah60@gmail.com',
             'password'  => bcrypt('helloworld')
