@@ -11,6 +11,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        if (App::environment() === 'production') exit();
+
         $this->call(UsersTableSeeder::class);
+        $this->call(DepartmentsTableSeeder::class);
+        $this->call(SubjectsTableSeeder::class);
+        $this->call(StudentsTableSeeder::class);
+
+        $this->call(UserSubjectTableSeeder::class);
+        $this->call(StudentSubjectTableSeeder::class);
+        
+        $this->call(EntrustRolePermissionSeeder::class);
     }
 }

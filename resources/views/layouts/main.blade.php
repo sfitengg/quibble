@@ -22,7 +22,7 @@
         <script src="{{ mix('js/manifest.js') }}"></script>
         <script src="{{ mix('js/vendor.js') }}"></script>
         @yield('scripts')
-        <!-- <script src="{{ mix('js/materialize.min.js') }}"></script> -->
-        <script src="js/materialize.min.js"></script>
+        <script src="{{ mix('js/materialize.min.js') }}"></script>
+        <!-- <script src="js/materialize.min.js"></script> -->
     </body>
 </html>
