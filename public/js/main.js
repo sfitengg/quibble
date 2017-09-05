@@ -15,7 +15,29 @@ var exams_json = { 'examlist': [
 
 
 
+$("#load-subject").click(function(){
+  console.log($("#year_select").val())
+  if($("#year_select").val()!=null){
+    if($("#department_select").val()!=null){
+      if($("#division_select").val()!=null){
 
+          loadSubjects();
+        
+
+
+      }
+      else{
+        Materialize.toast('Please select a division', 4000)
+      }
+    }
+    else{
+      Materialize.toast('Please select a department', 4000)
+    }
+  }
+  else{
+    Materialize.toast('Please select a year first', 4000)
+  }
+});
 //when selected a item
 
 var selectItem = function(obj){
@@ -108,6 +130,12 @@ var loadMarks = function(){
     refreshExams()
     loadExams()
   });
+
+   $('#one-body').on('dblclick','a.subject-list-item',function(){
+    console.log($(this).text()+"  double clicked")
+    
+  });
+
 
   //exams listener
   $('#two-body').on('click','a.exam-list-item',function(){
