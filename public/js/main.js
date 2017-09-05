@@ -119,8 +119,6 @@ var loadMarks = function(){
 }
 
 
-
-
 //on click listeners
 
   //subjects listener
