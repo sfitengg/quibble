@@ -48,6 +48,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user, $token){
         return response()->json([
             'token' => $token,
+            'redirect' => session()->get('url.intended'),
         ])->header("Authorization","Bearer $token");
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStudentSubjectTable extends Migration
+class CreateClassSubjectTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateStudentSubjectTable extends Migration
      */
     public function up()
     {
-        Schema::create('student_subject', function (Blueprint $table) {
-            $table->string('student_id');
+        Schema::create('class_subject', function (Blueprint $table) {
+            $table->integer('class_id')->unsigned();
             $table->string('subject_id');
 
-            $table->foreign('student_id')->references('id')->on('students')
+            $table->foreign('class_id')->references('id')->on('class')
                   ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('subject_id')->references('id')->on('subjects')
                   ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->primary(['student_id','subject_id']);
+            $table->primary(['class_id','subject_id']);
         });
     }
 

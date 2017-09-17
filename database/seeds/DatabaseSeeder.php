@@ -12,15 +12,22 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         if (App::environment() === 'production') exit();
+        Schema::disableForeignKeyConstraints();
 
-        $this->call(UsersTableSeeder::class);
-        $this->call(DepartmentsTableSeeder::class);
+        // $this->call(UsersTableSeeder::class);
+        // $this->call(DepartmentsTableSeeder::class);
         $this->call(SubjectsTableSeeder::class);
+        $this->call(ClassTableSeeder::class);
         $this->call(StudentsTableSeeder::class);
 
-        $this->call(UserSubjectTableSeeder::class);
-        $this->call(StudentSubjectTableSeeder::class);
+        $this->call(ClassSubjectTableSeeder::class);
         
-        $this->call(EntrustRolePermissionSeeder::class);
+        $this->call(ExamsPatternTableSeeder::class);
+        $this->call(ExamsTableSeeder::class);
+        // $this->call(ExamsMarksTableSeeder::class);
+        
+        // $this->call(EntrustRolePermissionSeeder::class);
+
+        Schema::enableForeignKeyConstraints();
     }
 }

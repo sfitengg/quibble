@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExamsTable extends Migration
+class CreateExamsPatternTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreateExamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('exams', function (Blueprint $table) {
+        Schema::create('exams_pattern', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('subject_id');
-            $table->integer('pattern_id')->unsigned();
-
-            $table->foreign('subject_id')->references('id')->on('subjects');
-            $table->foreign('pattern_id')->references('id')->on('exams_pattern')
-                  ->onDelete('restrict');
+            $table->longText('pattern');
         });
     }
 
@@ -32,6 +27,6 @@ class CreateExamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exams');
+        Schema::dropIfExists('exams_pattern');
     }
 }

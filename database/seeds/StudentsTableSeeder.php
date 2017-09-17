@@ -17,8 +17,6 @@ class StudentsTableSeeder extends Seeder
         
                 
         $faker = Faker::create();
-        $year = ['FE','SE','TE','BE'];
-        $class = ['A','B'];
 
         $dept = DB::table('departments')->pluck('id');
         //Convert $dept into array
@@ -28,9 +26,7 @@ class StudentsTableSeeder extends Seeder
             DB::table($this->_TABLE)->insert([
                 'id'        => $faker->uuid,
                 'name'      => $faker->name,
-                'year'      => $year[array_rand($year)],
                 'department_id'=> $dept[array_rand($dept)],
-                'class'     => $class[array_rand($class)],
             ]);
         }
     }
