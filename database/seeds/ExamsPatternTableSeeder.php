@@ -34,7 +34,6 @@ class ExamsPatternTableSeeder extends Seeder
             ],
         ];
         DB::table($this->_TABLE)->insert([
-            'id'        => 1,
             'name'      => 'IAT',
             'pattern'   => json_encode($pattern),
         ]);

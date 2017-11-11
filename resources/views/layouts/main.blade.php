@@ -15,6 +15,12 @@
         <!-- Styles -->
         <link href="{{ mix('css/materialize.css') }}" rel="stylesheet" type="text/css">
         @yield('styles')
+        <link href="https://fonts.googleapis.com/css?family=Asap+Condensed:500i" rel="stylesheet">
+        <style>
+            .logo-text{
+                font-family: 'Asap Condensed', sans-serif;
+            }
+        </style>
     </head>
     <body>
         @yield('content')

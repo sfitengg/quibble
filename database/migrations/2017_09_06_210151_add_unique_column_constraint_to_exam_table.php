@@ -25,8 +25,10 @@ class AddUniqueColumnConstraintToExamTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::table('exams',function(Blueprint $table){
             $table->dropUnique('subject_exam');
         });
+        Schema::enableForeignKeyConstraints();
     }
 }

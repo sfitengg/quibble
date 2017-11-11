@@ -16,7 +16,7 @@ class CreateExamsMarksTable extends Migration
         Schema::create('exams_marks',function(Blueprint $table){
             $table->increments('id');
             $table->integer('exam_id')->unsigned();
-            $table->string('student_id');
+            $table->integer('student_id')->unsigned();
             $table->longText('marks');
 
             $table->foreign('student_id')->references('id')->on('students');
@@ -31,6 +31,8 @@ class CreateExamsMarksTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('exams_marks');
+        Schema::enableForeignKeyConstraints();
     }
 }

@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['middleware'=>['jwt.refresh','jwt.auth']],function(){
-    Route::group(['prefix'=>'auth',['middleware'=>'ability:admin,give-access-rights']],function(){
+    Route::group(['prefix'=>'auth',['middleware'=>'ability:admin']],function(){
         /*
         *   Create roles and permission
         */
@@ -28,6 +28,23 @@ Route::group(['middleware'=>['jwt.refresh','jwt.auth']],function(){
         Route::post('assign-permission','Auth\AccessController@attachPermission');
     });
     
+    Route::group(['prefix'=>'department'],function(){
+        Route::get('/{id}','DepartmentController@getById');
+        Route::get('','DepartmentController@getAll');
+        Route::get('/{id}/classroom','DepartmentController@getClass');
+        Route::post('','DepartmentController@post');
+        Route::delete('/{id}','DepartmentController@delete');
+        Route::patch('','DepartmentController@patch');
+    });
+
+    Route::group(['prefix'=>'classroom'],function(){
+        Route::get('/{id}','ClassRoomController@getById');
+        Route::get('','ClassRoomController@getAll');
+        Route::post('','ClassRoomController@post');
+        Route::delete('/{id}','ClassRoomController@delete');
+        Route::patch('','ClassRoomController@patch');
+    });
+
     Route::get('user', function (Request $request) {
         return $request->user();
     });

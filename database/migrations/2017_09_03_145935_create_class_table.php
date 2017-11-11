@@ -16,7 +16,7 @@ class CreateClassTable extends Migration
         Schema::create('class', function (Blueprint $table) {
             $table->increments('id');
             $table->string('year',4);
-            $table->string('department_id');
+            $table->integer('department_id')->unsigned();
             $table->string('division');
 
             $table->foreign('department_id')->references('id')->on('departments')
@@ -31,6 +31,8 @@ class CreateClassTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('class');
+        Schema::enableForeignKeyConstraints();
     }
 }

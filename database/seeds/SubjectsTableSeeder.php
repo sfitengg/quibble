@@ -19,9 +19,9 @@ class SubjectsTableSeeder extends Seeder
         $dept = \DB::table('departments')->where('name','=','IT')->first();
 
         DB::table($this->_TABLE)->insert([
-            ['id'=>$faker->uuid,'name'=>'CGVR','sem'=>'5','department_id'=>$dept->id],
-            ['id'=>$faker->uuid,'name'=>'ADMBS','sem'=>'5','department_id'=>$dept->id],
-            ['id'=>$faker->uuid,'name'=>'OS','sem'=>'5','department_id'=>$dept->id],
+            ['uid'=>'11','name'=>'CGVR','sem'=>'5','department_id'=>$dept->id],
+            ['uid'=>'22','name'=>'ADMBS','sem'=>'5','department_id'=>$dept->id],
+            ['uid'=>'33','name'=>'OS','sem'=>'5','department_id'=>$dept->id],
         ]);
     }
 }

@@ -46,9 +46,13 @@ class LoginController extends Controller
     }
 
     protected function authenticated(Request $request, $user, $token){
+        $redirect = session()->get('url.intended');
+        if(strpos($redirect,'login')!== false){
+            $redirect = $this->redirectTo;
+        }
         return response()->json([
             'token' => $token,
-            'redirect' => session()->get('url.intended'),
+            'redirect' => $redirect,
         ])->header("Authorization","Bearer $token");
     }
 

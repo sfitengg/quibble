@@ -14,10 +14,8 @@ class CreateDepartmentsTable extends Migration
     public function up()
     {
         Schema::create('departments', function (Blueprint $table) {
-            $table->string('id');
+            $table->increments('id');
             $table->string('name');
-
-            $table->primary('id');
         });
     }
 
@@ -28,6 +26,8 @@ class CreateDepartmentsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('departments');
+        Schema::enableForeignKeyConstraints();
     }
 }

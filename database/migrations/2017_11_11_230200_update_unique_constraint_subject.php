@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExamsPatternTable extends Migration
+class UpdateUniqueConstraintSubject extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateExamsPatternTable extends Migration
      */
     public function up()
     {
-        Schema::create('exams_pattern', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->longText('pattern');
+        Schema::table('subjects',function(Blueprint $table){
+            //$table->dropUnique('subject_name_unique');
+            $table->unique('uid','subject_uid_unique');
         });
     }
 
@@ -28,7 +27,9 @@ class CreateExamsPatternTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('exams_pattern');
+        Schema::table('subjects',function(Blueprint $table){
+            $table->dropUnique('subject_uid_unique');
+        });
         Schema::enableForeignKeyConstraints();
     }
 }
