@@ -3,9 +3,9 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\QueryException;
 
-class ClassSubjectTableSeeder extends Seeder
+class MapClassSubjectTableSeeder extends Seeder
 {
-    protected $_TABLE = 'class_subject';
+    protected $_TABLE = 'map_class_subject';
     /**
      * Run the database seeds.
      *

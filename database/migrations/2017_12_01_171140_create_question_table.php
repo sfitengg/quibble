@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddUniqueColumnConstraintToExamTable extends Migration
+class CreateQuestionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddUniqueColumnConstraintToExamTable extends Migration
      */
     public function up()
     {
-        Schema::table('exams',function(Blueprint $table){
-            $table->unique(['subject_id','name'],'subject_exam');
+        Schema::create('questions',function(Blueprint $table){
+            $table->increments('id');
+            $table->text('num')->comment('Sub question number');
         });
     }
 
@@ -26,9 +27,7 @@ class AddUniqueColumnConstraintToExamTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::table('exams',function(Blueprint $table){
-            $table->dropUnique('subject_exam');
-        });
+        Schema::dropIfExists('sub_questions');
         Schema::enableForeignKeyConstraints();
     }
 }

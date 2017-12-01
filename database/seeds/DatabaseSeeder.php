@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ClassSubjectTableSeeder::class);
         
-        $this->call(ExamsPatternTableSeeder::class);
+        //$this->call(ExamsPatternTableSeeder::class);
         $this->call(ExamsTableSeeder::class);
         $this->call(ExamsMarksTableSeeder::class);
         

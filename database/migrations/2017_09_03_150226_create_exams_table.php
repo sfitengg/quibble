@@ -16,12 +16,9 @@ class CreateExamsTable extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('subject_id')->unsigned();
-            $table->integer('pattern_id')->unsigned();
+            $table->integer('marks');
 
-            $table->foreign('subject_id')->references('id')->on('subjects');
-            $table->foreign('pattern_id')->references('id')->on('exams_pattern')
-                  ->onDelete('restrict');
+            $table->unique('name');
         });
     }
 

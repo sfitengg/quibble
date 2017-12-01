@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExamsPatternTable extends Migration
+class CreateMapSubjectExamTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,15 @@ class CreateExamsPatternTable extends Migration
      */
     public function up()
     {
-        Schema::create('exams_pattern', function (Blueprint $table) {
+        Schema::create('map_subject_exam',function(Blueprint $table){
             $table->increments('id');
-            $table->string('name');
-            $table->longText('pattern');
+            $table->unsignedInteger('subject_id');
+            $table->unsignedInteger('exam_id');
+
+            $table->foreign('subject_id')->references('id')
+            ->on('subjects');
+            $table->foreign('exam_id')->references('id')
+            ->on('exams')->onDelete('restrict');
         });
     }
 
@@ -28,7 +33,7 @@ class CreateExamsPatternTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('exams_pattern');
+        Schema::dropIfExists('map_subject_exam');
         Schema::enableForeignKeyConstraints();
     }
 }

@@ -18,8 +18,9 @@ class CreateStudentsTable extends Migration
             $table->string('uid');
             $table->string('name');
             $table->integer('class_id')->unsigned();
-            $table->string('profile_pic')->default('/img/profile_default.png');
+            $table->string('profile_pic')->default(config('custom.storage.profile').'profile_default.png');
 
+            $table->unique('uid');
             $table->foreign('class_id')->references('id')->on('class')
                   ->onUpdate('cascade')->onDelete('cascade');
         });

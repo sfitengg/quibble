@@ -18,6 +18,7 @@ class CreateSubjectsTable extends Migration
             $table->string('uid');
             $table->string('name');
             $table->string('sem',2);
+            $table->integer('co')->comment('Total no. of Course outcome');
             $table->integer('department_id')->unsigned();
             
             $table->foreign('department_id')->references('id')->on('departments');

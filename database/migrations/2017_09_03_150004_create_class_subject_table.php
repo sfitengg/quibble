@@ -13,7 +13,7 @@ class CreateClassSubjectTable extends Migration
      */
     public function up()
     {
-        Schema::create('class_subject', function (Blueprint $table) {
+        Schema::create('map_class_subject', function (Blueprint $table) {
             $table->integer('class_id')->unsigned();
             $table->integer('subject_id')->unsigned();
 
@@ -34,7 +34,7 @@ class CreateClassSubjectTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('student_subject');
+        Schema::dropIfExists('map_class_subject');
         Schema::enableForeignKeyConstraints();
     }
 }

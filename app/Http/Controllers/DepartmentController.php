@@ -46,7 +46,7 @@ class DepartmentController extends Controller
     public function delete(Request $request,$id){
         $department = Department::find($id);
         if($department !==null){
-            Department::destroy($id);
+            $department->delete();
             return ['message'=>'Department deleted successfully'];
         }
 
