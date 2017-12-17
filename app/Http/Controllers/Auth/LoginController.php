@@ -48,7 +48,7 @@ class LoginController extends Controller
      */
     protected $validationMessage = [
         'required' => 'The :attribute is required',
-        'email'    => 'Invalid email-id',
+        'email'    => 'Invalid email-id format',
     ];
     
     /**
@@ -56,8 +56,9 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct(){
-        $this->middleware('guest')->except('logout');
+    public function __construct()
+    {
+        $this->middleware('guest.jwt')->except(['logout']);
     }
     
     /**
@@ -65,7 +66,8 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function showLoginForm(){
+    public function showLoginForm()
+    {
         return view('auth.login');
     }
 
@@ -148,26 +150,6 @@ class LoginController extends Controller
     }
 
     /**
-     * Sends a lockout response when exceeded
-     * login attempts
-     *
-     * @param Request $request
-     * @return void
-     */
-    /*protected function sendLockoutResponse(Request $request)
-    {
-        $seconds = $this->limiter()->availableIn(
-            $this->throttleKey($request)
-        );
-
-        return response()->json(
-            [
-                'error'=>"Too many login attempts.Please login after {$seconds}sec."
-            ]
-        );
-    }*/
-
-    /**
      * Performs failed login process
      *
      * @param Request $request
@@ -176,9 +158,9 @@ class LoginController extends Controller
     protected function sendFailedLoginResponse(Request $request)
     {
         // Increment failed login attempts
-        $this->incrementLoginAttempts($request);
-
-        return response()->json(['error'=>'Email/password is invalid'] , 401);
+        $left = $this->incrementLoginAttempts($request);
+        
+        return response()->json(['error'=>'Email/password is incorrect']);
     }
 
     /**
@@ -197,6 +179,7 @@ class LoginController extends Controller
             [
                 'success' => 1,
                 'token' => $token,
+                'token_type' => 'bearer',
             ]
         );
     }
