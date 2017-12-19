@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Validator;
 use Exception;
 use App\Http\Controllers\Controller;
+use App\Traits\ValidationTrait;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 
@@ -25,7 +25,7 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-    use ThrottlesLogins;
+    use ThrottlesLogins,ValidationTrait;
 
     /**
      * Where to redirect users after login.
@@ -40,16 +40,6 @@ class LoginController extends Controller
      * @var array
      */
     protected $credentials = ['email','password'];
-
-    /**
-     * Custom validation messages
-     *
-     * @var array
-     */
-    protected $validationMessage = [
-        'required' => 'The :attribute is required',
-        'email'    => 'Invalid email-id format',
-    ];
     
     /**
      * Create a new controller instance.
@@ -89,7 +79,7 @@ class LoginController extends Controller
 
         // Validate input parameters
         try{
-            $this->validateLogin($request);
+            $this->validateInput($this->credentials($request));
         }catch(Exception $e){
             return $this->sendValidationFailedResponse($e);
         }
@@ -110,28 +100,6 @@ class LoginController extends Controller
 
         // Authentication failed
         return $this->sendFailedLoginResponse($request);
-    }
-
-    /**
-     * Validated the input parameters for login
-     *
-     * @param Request $request
-     * @return void
-     */
-    public function validateLogin(Request $request)
-    {
-        $validator = Validator::make(
-            $this->credentials($request) ,
-            [
-                'email' => 'required|email',
-                'password' => 'required|string'
-            ] ,
-            $this->validationMessage
-        );
-
-        if ($validator->fails()) {
-            throw new Exception($validator->errors()->first());
-        }
     }
 
     protected function sendValidationFailedResponse(Exception $e){

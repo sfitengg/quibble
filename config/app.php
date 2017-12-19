@@ -184,6 +184,11 @@ return [
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
         Zizaco\Entrust\EntrustServiceProvider::class,
+
+        /**
+         * Maatwebsite Excel lib
+         */
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*

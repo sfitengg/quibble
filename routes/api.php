@@ -50,6 +50,7 @@ Route::group(['middleware'=>['jwt.refresh','jwt.auth']],function(){
         Route::get('/{id}','StudentController@getById');
         Route::get('','StudentController@getAll');
         Route::post('','StudentController@post');
+        Route::post('/single','StudentController@postSingle');
         Route::delete('/{id}','StudentController@delete');
         Route::patch('','StudentController@patch');
     });
