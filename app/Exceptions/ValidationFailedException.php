@@ -11,4 +11,8 @@ class ValidationFailedException extends Exception
     {
         $this->message = ['validationErrors'=>$errors];
     }
+
+    public function __toString(){
+        return json_encode($this->message);
+    }
 }

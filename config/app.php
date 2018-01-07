@@ -182,7 +182,6 @@ return [
         *   JWT Service Provider
         */
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
-
         Zizaco\Entrust\EntrustServiceProvider::class,
 
         /**
