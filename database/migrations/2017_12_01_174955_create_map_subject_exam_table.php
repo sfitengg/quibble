@@ -22,6 +22,8 @@ class CreateMapSubjectExamTable extends Migration
             ->on('subjects');
             $table->foreign('exam_id')->references('id')
             ->on('exams')->onDelete('restrict');
+
+            $table->unique(['subject_id','exam_id']);
         });
     }
 

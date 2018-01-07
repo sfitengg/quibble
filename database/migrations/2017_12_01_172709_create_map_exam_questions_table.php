@@ -24,6 +24,7 @@ class CreateMapExamQuestionsTable extends Migration
             $table->foreign('question_id')->references('id')->on('questions')
             ->onDelete('restrict');
             
+            $table->unique(['exam_id','question_id']);
         });
     }
 

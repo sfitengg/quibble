@@ -28,9 +28,7 @@ class MapClassSubjectTableSeeder extends Seeder
                     'subject_id' => $subject[array_rand($subject)],
                     'class_id' => $class[array_rand($class)],
                 ]);
-            }catch(QueryException $e){
-                //
-            }
+            }catch(Exception $e){}
         }
     }
 }

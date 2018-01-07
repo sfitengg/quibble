@@ -15,13 +15,13 @@ class SubjectsTableSeeder extends Seeder
         DB::table($this->_TABLE)->truncate();
         
                 
-        $faker = Faker::create();
+        // $faker = Faker::create();
         $dept = \DB::table('departments')->where('name','=','IT')->first();
 
         DB::table($this->_TABLE)->insert([
-            ['uid'=>'11','name'=>'CGVR','sem'=>'5','department_id'=>$dept->id],
-            ['uid'=>'22','name'=>'ADMBS','sem'=>'5','department_id'=>$dept->id],
-            ['uid'=>'33','name'=>'OS','sem'=>'5','department_id'=>$dept->id],
+            ['uid'=>'11','name'=>'CGVR','sem'=>'5','department_id'=>$dept->id,'co'=>6],
+            ['uid'=>'22','name'=>'ADMBS','sem'=>'5','department_id'=>$dept->id,'co'=>6],
+            ['uid'=>'33','name'=>'OS','sem'=>'5','department_id'=>$dept->id,'co'=>6],
         ]);
     }
 }

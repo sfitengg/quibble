@@ -16,7 +16,7 @@ class CreateExamsTable extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('marks');
+            $table->integer('marks')->comment('Total exam marks');
 
             $table->unique('name');
         });

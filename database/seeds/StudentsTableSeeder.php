@@ -23,11 +23,14 @@ class StudentsTableSeeder extends Seeder
         $class = collect($class)->map(function($x){return $x;})->toArray();
         
         for($i=16100;$i<=16300;$i++){
-            DB::table($this->_TABLE)->insert([
-                'uid'       => $i,
-                'name'      => $faker->name,
-                'class_id'=> $class[array_rand($class)],
-            ]);
+            try{
+                DB::table($this->_TABLE)->insert([
+                    'uid'       => $i,
+                    'name'      => $faker->name,
+                    'roll_no'   => $faker->numberBetween(1,80),
+                    'class_id'  => $class[array_rand($class)],
+                ]);
+            }catch(Exception $e){}
         }
     }
 }

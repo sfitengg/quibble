@@ -15,7 +15,9 @@ class CreateQuestionTable extends Migration
     {
         Schema::create('questions',function(Blueprint $table){
             $table->increments('id');
-            $table->text('num')->comment('Sub question number');
+            $table->string('num',5)->comment('Sub question number');
+
+            $table->unique('num');
         });
     }
 

@@ -20,11 +20,15 @@ class DatabaseSeeder extends Seeder
         $this->call(ClassTableSeeder::class);
         $this->call(StudentsTableSeeder::class);
         
-        $this->call(ClassSubjectTableSeeder::class);
+        $this->call(MapClassSubjectTableSeeder::class);
         
-        //$this->call(ExamsPatternTableSeeder::class);
         $this->call(ExamsTableSeeder::class);
-        $this->call(ExamsMarksTableSeeder::class);
+        $this->call(QuestionTableSeeder::class);
+        
+        $this->call(MapExamQuestionsTableSeeder::class);
+        $this->call(MapSubjectExamTableSeeder::class);
+        
+        $this->call(MarksTableSeeder::class);
         
         $this->call(EntrustRolePermissionSeeder::class);
 

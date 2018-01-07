@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDepartmentsTable extends Migration
+class AddUniqueClassidRollno extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateDepartmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('departments', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-
-            $table->unique('name');
+        Schema::table('students',function(Blueprint $table){
+            $table->unique(['class_id','roll_no']);
         });
     }
 
@@ -28,8 +25,8 @@ class CreateDepartmentsTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('departments');
-        Schema::enableForeignKeyConstraints();
+        Schema::table('students',function(Blueprint $table){
+            $table->dropUnique(['class_id','roll_no']);
+        });
     }
 }

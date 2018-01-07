@@ -18,7 +18,7 @@ class CreateMarksTable extends Migration
             $table->unsignedInteger('student_id');
             $table->unsignedInteger('subject_exam_id');
             $table->unsignedInteger('question_id');
-            $table->float('marks',2,1);
+            $table->float('marks',2,1)->comment('Marks obtained');
 
             $table->foreign('student_id')->references('id')
             ->on('students')->onDelete('cascade');
@@ -26,6 +26,8 @@ class CreateMarksTable extends Migration
             ->on('map_subject_exam')->onDelete('cascade');
             $table->foreign('question_id')->references('id')
             ->on('questions')->onDelete('cascade');
+
+            $table->unique(['student_id','subject_exam_id','question_id']);
         });
     }
 

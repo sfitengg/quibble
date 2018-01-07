@@ -21,6 +21,8 @@ class CreateClassTable extends Migration
 
             $table->foreign('department_id')->references('id')->on('departments')
                   ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->unique(['year','department_id','division']);
         });
     }
 

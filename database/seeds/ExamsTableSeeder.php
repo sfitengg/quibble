@@ -14,21 +14,18 @@ class ExamsTableSeeder extends Seeder
     {
         DB::table($this->_TABLE)->truncate();
         
-        $subject = DB::table('subjects')->pluck('id');
+        /*$subject = DB::table('subjects')->pluck('id');
         //Convert $subject into array
         $subject = collect($subject)->map(function($x){return $x;})->toArray();
-        
-        $exam = ['IAT1','IAT2'];
-        for($i=0;$i<200;$i++){
+        */
+        $exams = ['IAT1','IAT2'];
+        foreach($exams as $exam){
             try{
                 DB::table($this->_TABLE)->insert([
-                    'name'      => $exam[array_rand($exam)],
-                    'subject_id'=> $subject[array_rand($subject)],
-                    'pattern_id'   => 1,
+                    'name'      => $exam,
+                    'marks'     => 20,
                 ]);
-            }catch(Exception $e){
-                
-            }
+            }catch(Exception $e){}
             
         }
     }
