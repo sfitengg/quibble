@@ -13,9 +13,9 @@ class CreateClassSubjectTable extends Migration
      */
     public function up()
     {
-        Schema::create('class_subject', function (Blueprint $table) {
+        Schema::create('map_class_subject', function (Blueprint $table) {
             $table->integer('class_id')->unsigned();
-            $table->string('subject_id');
+            $table->integer('subject_id')->unsigned();
 
             $table->foreign('class_id')->references('id')->on('class')
                   ->onUpdate('cascade')->onDelete('cascade');
@@ -33,6 +33,8 @@ class CreateClassSubjectTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_subject');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('map_class_subject');
+        Schema::enableForeignKeyConstraints();
     }
 }

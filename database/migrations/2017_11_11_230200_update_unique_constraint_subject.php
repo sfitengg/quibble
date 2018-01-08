@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDepartmentsTable extends Migration
+class UpdateUniqueConstraintSubject extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateDepartmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('departments', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-
-            $table->unique('name');
+        Schema::table('subjects',function(Blueprint $table){
+            //$table->dropUnique('subject_name_unique');
+            $table->unique('uid','subject_uid_unique');
         });
     }
 
@@ -29,7 +27,9 @@ class CreateDepartmentsTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('departments');
+        Schema::table('subjects',function(Blueprint $table){
+            $table->dropUnique('subject_uid_unique');
+        });
         Schema::enableForeignKeyConstraints();
     }
 }

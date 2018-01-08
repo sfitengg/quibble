@@ -34,13 +34,13 @@ class EntrustRolePermissionSeeder extends Seeder
             $this->insertRole($role);
         }
 
-        foreach($permissions as $permissions){
+        /*foreach($permissions as $permissions){
             $this->insertPermission($role);
         }
 
         foreach($attachPermission as $role=>$permission){
             $this->attachPermission($role,$permission);
-        }
+        }*/
 
         foreach($assignRole as $role=>$user){
             $this->assignRole($role,$user);

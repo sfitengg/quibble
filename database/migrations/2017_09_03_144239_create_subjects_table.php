@@ -14,15 +14,16 @@ class CreateSubjectsTable extends Migration
     public function up()
     {
         Schema::create('subjects', function (Blueprint $table) {
-            $table->string('id');
+            $table->increments('id');
+            $table->string('uid');
             $table->string('name');
             $table->string('sem',2);
-            $table->string('department_id');
+            $table->integer('co')->comment('Total no. of Course outcome');
+            $table->integer('department_id')->unsigned();
             
             $table->foreign('department_id')->references('id')->on('departments');
 
-            $table->primary('id');
-            $table->unique('name');
+            $table->unique(['name','department_id']);
         });
     }
 
@@ -33,6 +34,8 @@ class CreateSubjectsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('subjects');
+        Schema::enableForeignKeyConstraints();
     }
 }

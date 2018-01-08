@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExamsPatternTable extends Migration
+class CreateQuestionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateExamsPatternTable extends Migration
      */
     public function up()
     {
-        Schema::create('exams_pattern', function (Blueprint $table) {
+        Schema::create('questions',function(Blueprint $table){
             $table->increments('id');
-            $table->string('name');
-            $table->longText('pattern');
+            $table->string('num',5)->comment('Sub question number');
+
+            $table->unique('num');
         });
     }
 
@@ -27,6 +28,8 @@ class CreateExamsPatternTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exams_pattern');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('sub_questions');
+        Schema::enableForeignKeyConstraints();
     }
 }

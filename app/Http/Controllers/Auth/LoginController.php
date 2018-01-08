@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Exception;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Traits\ValidationTrait;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Log;
 
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -21,84 +25,168 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-    
-    use AuthenticatesUsers;
-    
+    use ThrottlesLogins,ValidationTrait;
+
     /**
-    * Where to redirect users after login.
-    *
-    * @var string
-    */
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
     protected $redirectTo = '/';
+
+    /**
+     * Credentials required for login
+     *
+     * @var array
+     */
+    protected $credentials = ['email','password'];
     
     /**
-    * Create a new controller instance.
-    *
-    * @return void
-    */
-    public function __construct(){
-        $this->middleware('guest')->except('logout');
-    }
-    
-    protected function sendLoginResponse(Request $request, $token){
-        $this->clearLoginAttempts($request);     
-        return $this->authenticated($request, $this->guard()->user(), $token);
-    }
-
-    protected function authenticated(Request $request, $user, $token){
-        return response()->json([
-            'token' => $token,
-            'redirect' => session()->get('url.intended'),
-        ])->header("Authorization","Bearer $token");
-    }
-
-    protected function sendFailedLoginResponse(Request $request){
-        return response()->json([
-            'error' => 'Login failed',
-        ], 401);
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest.jwt')->except(['logout']);
     }
     
     /**
-    * Send the response after the user was authenticated.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
-    
-    public function login(Request $request){
-        $this->validateLogin($request);
-        
-        // If the class is using the ThrottlesLogins trait, we can automatically throttle
-        // the login attempts for this application. We'll key this by the username and
-        // the IP address of the client making these requests into this application.
+     * Displays the login form
+     *
+     * @return void
+     */
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    /**
+     * Performs user authentication and generates token for
+     * authenticated users.
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function login(Request $request)
+    {
+        // Disable login for certain time if
+        // too many failed attempts occur
         if ($this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
-            
             return $this->sendLockoutResponse($request);
         }
-        
-        $credentials = $this->credentials($request);
+
+        // Validate input parameters
         try{
-            
-            if ($token = JWTAuth::attempt($credentials)){
-                return $this->sendLoginResponse($request,$token);
-            }
-        }catch(JWTException $e){
-            return response()->json(['error' => 'could_not_create_token'], 500);
+            $this->validateInput($this->credentials($request));
+        }catch(Exception $e){
+            return $this->sendValidationFailedResponse($e);
         }
         
-        // If the login attempt was unsuccessful we will increment the number of attempts
-        // to login and redirect the user back to the login form. Of course, when this
-        // user surpasses their maximum number of attempts they will get locked out.
-        $this->incrementLoginAttempts($request);
-        
+
+        // Retrieve login details
+        $credentials = $this->credentials($request);
+
+        // Authenticate user
+        try{
+            if ($token = JWTAuth::attempt($credentials)) {
+                // User authenticated
+                return $this->sendLoginResponse($request , $token);
+            }
+        }catch(JWTException $e){
+            return $this->sendTokenErrorResponse($e);
+        }
+
+        // Authentication failed
         return $this->sendFailedLoginResponse($request);
     }
 
+    protected function sendValidationFailedResponse(Exception $e){
+        return response()->json(['error'=>$e->getMessage()]);
+    }
 
-    public function logout(){
+    /**
+     * Returns the credentials from Request
+     *
+     * @param Request $request
+     * @return void
+     */
+    protected function credentials(Request $request)
+    {
+        return $request->only($this->credentials);
+    }
+
+    /**
+     * Performs failed login process
+     *
+     * @param Request $request
+     * @return void
+     */
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        // Increment failed login attempts
+        $left = $this->incrementLoginAttempts($request);
+        
+        return response()->json(['error'=>'Email/password is incorrect']);
+    }
+
+    /**
+     * Performs post login task
+     *
+     * @param Request $request
+     * @param string $token
+     * @return void
+     */
+    protected function sendLoginResponse(Request $request,string $token)
+    {
+        // Clear failed login attempts
+        $this->clearLoginAttempts($request);
+
+        return response()->json(
+            [
+                'success' => 1,
+                'token' => $token,
+                'token_type' => 'bearer',
+            ]
+        );
+    }
+
+    /**
+     * Sends a server error as response when
+     * there is some token related exception
+     *
+     * @param JWTException $e
+     * @return void
+     */
+    protected function sendTokenErrorResponse(JWTException $e)
+    {
+        //Create an notice log
+        Log::notice('token_create_exception:'.$e);
+        return response()->json(['error' => 'Oops! Something went wrong..'] , 500);
+    }
+
+    /**
+     * Invalidates JWT token and logout the user
+     * from the application
+     *
+     * @return void
+     */
+    public function logout()
+    {
         JWTAuth::invalidate(JWTAuth::getToken());
 
         return redirect()->route('login');
+    }
+
+    /**
+     * Returns the username that is to be used
+     * by the controller
+     *
+     * @return void
+     */
+    protected function username()
+    {
+        return 'email';
     }
 }

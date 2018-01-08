@@ -12,7 +12,7 @@
         <div class="col s12 m6 offset-m3 full-height v-align">
             <div class="row">
                 <div class="col s10 offset-s1 m6 offset-m3 no-padding center-align">
-                    <h2 class="logo-text primary-color-text">quibble</h2>
+                    <h2 class="logo-text primary-color-text">{{ env('APP_DISPLAY_NAME') }}</h2>
                 </div>
                 <div class="col s10 offset-s1 m6 offset-m3 no-padding">
                     <form action="" method="get">

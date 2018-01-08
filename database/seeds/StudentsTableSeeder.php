@@ -18,16 +18,19 @@ class StudentsTableSeeder extends Seeder
                 
         $faker = Faker::create();
 
-        $dept = DB::table('departments')->pluck('id');
-        //Convert $dept into array
-        $dept = collect($dept)->map(function($x){return $x;})->toArray();
+        $class = DB::table('class')->pluck('id');
+        //Convert $class into array
+        $class = collect($class)->map(function($x){return $x;})->toArray();
         
-        for($i=0;$i<200;$i++){
-            DB::table($this->_TABLE)->insert([
-                'id'        => $faker->uuid,
-                'name'      => $faker->name,
-                'department_id'=> $dept[array_rand($dept)],
-            ]);
+        for($i=16100;$i<=16300;$i++){
+            try{
+                DB::table($this->_TABLE)->insert([
+                    'uid'       => $i,
+                    'name'      => $faker->name,
+                    'roll_no'   => $faker->numberBetween(1,80),
+                    'class_id'  => $class[array_rand($class)],
+                ]);
+            }catch(Exception $e){}
         }
     }
 }

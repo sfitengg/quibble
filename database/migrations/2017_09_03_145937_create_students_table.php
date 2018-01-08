@@ -14,13 +14,14 @@ class CreateStudentsTable extends Migration
     public function up()
     {
         Schema::create('students', function (Blueprint $table) {
-            $table->string('id');
+            $table->increments('id');
+            $table->string('uid');
             $table->string('name');
-            $table->string('department_id');
-            $table->string('profile_pic')->default('/img/profile_default.png');
+            $table->integer('class_id')->unsigned();
+            $table->string('profile_pic')->default(config('custom.storage.profile').'profile_default.png');
 
-            $table->primary('id');
-            $table->foreign('department_id')->references('id')->on('departments')
+            $table->unique('uid');
+            $table->foreign('class_id')->references('id')->on('class')
                   ->onUpdate('cascade')->onDelete('cascade');
         });
     }
@@ -32,6 +33,8 @@ class CreateStudentsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('students');
+        Schema::enableForeignKeyConstraints();
     }
 }

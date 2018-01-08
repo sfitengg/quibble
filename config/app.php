@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Quibble'),
 
     /*
     |--------------------------------------------------------------------------
@@ -182,8 +182,12 @@ return [
         *   JWT Service Provider
         */
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
-
         Zizaco\Entrust\EntrustServiceProvider::class,
+
+        /**
+         * Maatwebsite Excel lib
+         */
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -237,6 +241,7 @@ return [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         
     ],
 

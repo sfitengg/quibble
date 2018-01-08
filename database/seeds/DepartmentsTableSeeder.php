@@ -18,9 +18,9 @@ class DepartmentsTableSeeder extends Seeder
         
         $faker = Faker::create();
         DB::table($this->_TABLE)->insert([
-            ['id'=> $faker->uuid,'name' => 'IT'],
-            ['id'=> $faker->uuid,'name' => 'CMPN'],
-            ['id'=> $faker->uuid,'name' => 'EXTC']
+            ['name' => 'IT'],
+            ['name' => 'CMPN'],
+            ['name' => 'EXTC']
         ]);
     }
 }

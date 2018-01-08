@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddUniqueColumnConstraintToExamTable extends Migration
+class AddRollNoColumnToStudents extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddUniqueColumnConstraintToExamTable extends Migration
      */
     public function up()
     {
-        Schema::table('exams',function(Blueprint $table){
-            $table->unique(['subject_id','name'],'subject_exam');
+        Schema::table('students',function(Blueprint $table){
+            $table->integer('roll_no');
         });
     }
 
@@ -25,8 +25,8 @@ class AddUniqueColumnConstraintToExamTable extends Migration
      */
     public function down()
     {
-        Schema::table('exams',function(Blueprint $table){
-            $table->dropUnique('subject_exam');
+        Schema::table('students',function(Blueprint $table){
+            $table->dropColumn('roll_no');
         });
     }
 }

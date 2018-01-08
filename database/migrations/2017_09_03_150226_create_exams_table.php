@@ -16,12 +16,9 @@ class CreateExamsTable extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('subject_id');
-            $table->integer('pattern_id')->unsigned();
+            $table->integer('marks')->comment('Total exam marks');
 
-            $table->foreign('subject_id')->references('id')->on('subjects');
-            $table->foreign('pattern_id')->references('id')->on('exams_pattern')
-                  ->onDelete('restrict');
+            $table->unique('name');
         });
     }
 
@@ -32,6 +29,8 @@ class CreateExamsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('exams');
+        Schema::enableForeignKeyConstraints();
     }
 }

@@ -1,3 +1,7 @@
+body {
+  font-size: 14px;
+}
+
 .col.full-height {
   min-height: 100vh;
 }
@@ -25,5 +29,48 @@
 
 .logo-text {
   font-family: 'Dancing Script', cursive;
+}
+
+.spacer {
+  height: 20px;
+}
+
+.transparent-color {
+  background: transparent !important;
+}
+
+.no-border {
+  border: none;
+}
+
+/**
+    Navigation
+*/
+
+.nav-link-collection {
+  color: #fff;
+}
+
+.nav-link-collection .nav-link {
+  margin-bottom: 0;
+  padding-top: 10px;
+  padding-bottom: 3px;
+  border-radius: 3px;
+}
+
+.nav-link-collection .nav-link .title {
+  line-height: 26px;
+}
+
+.nav-link-collection .nav-link:hover {
+  background: #1382D9;
+}
+
+.nav-link-collection .nav-link:active {
+  background: #065594;
+}
+
+.nav-link-collection .nav-link.active {
+  background: #0563ad;
 }
 

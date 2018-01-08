@@ -25,8 +25,10 @@ class AddUniqueColumnConstraintToClassTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::table('class',function(Blueprint $table){
             $table->dropUnique('year_dept_div');
         });
+        Schema::enableForeignKeyConstraints();
     }
 }
