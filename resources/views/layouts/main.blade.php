@@ -13,7 +13,7 @@
         <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700" rel="stylesheet">
         
         <!-- Styles -->
-        <link href="{{ mix('css/materialize.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/materialize.css') }}" rel="stylesheet" type="text/css">
         @yield('styles')
         <link href="https://fonts.googleapis.com/css?family=Asap+Condensed:500i" rel="stylesheet">
         <style>
@@ -25,10 +25,11 @@
     <body @yield('body-attr')>
         @yield('content')
         
-        <script src="{{ mix('js/manifest.js') }}"></script>
-        <script src="{{ mix('js/vendor.js') }}"></script>
+        <!-- // <script src="{{ mix('js/manifest.js') }}"></script> -->
+        <!-- // <script src="{{ mix('js/vendor.js') }}"></script> -->
+        <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.js') }}"></script>
+        <script src="{{ asset('js/materialize.min.js') }}"></script>
         @yield('scripts')
-        <script src="{{ mix('js/materialize.min.js') }}"></script>
         <!-- <script src="js/materialize.min.js"></script> -->
     </body>
 </html>

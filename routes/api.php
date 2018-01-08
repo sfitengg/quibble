@@ -55,6 +55,10 @@ Route::group(['middleware'=>['jwt.refresh','jwt.auth']],function(){
         Route::patch('','StudentController@patch');
     });
 
+    Route::group(['prefix'=>'subject'],function(){
+        Route::get('/of-class','SubjectController@getClassSubjects');
+    });
+
 
     Route::group(['prefix'=>'user'],function(){
 

@@ -6,6 +6,14 @@ var attempt_login = function(){
 	
 	if(id_set == password_set && password_set == true){
 		//load the main page
+		$.ajax({
+			url:"/accounts/login",
+			type:"POST",
+			data:{email:$('#username').val(),password:$("#password").val()},
+			success:function(data){
+				console.log(data);
+			}
+		});
 		alert("login successful")
 	}
 }
@@ -20,7 +28,7 @@ var forgot_password = function(){
 
 var check_id = function(){
 	console.log("check_id() called")
-	var uname = $("#uname").val();
+	var uname = $("#username").val();
 	if( uname == ""){
 		Materialize.toast('Please enter your username', 4000)
 		return false;
@@ -46,7 +54,7 @@ var validate_id = function(id){
 
 var check_password = function(){
 	console.log("check_password() called");
-	var password = $("#pass").val();
+	var password = $("#password").val();
 	if(password == ""){
 		console.log()
 		Materialize.toast('Please enter your password', 4000)

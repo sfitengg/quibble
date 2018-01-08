@@ -3,7 +3,7 @@
 @section('title','| Login')
 
 @section('styles')
-<link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
 @endsection
 
 @section('content')
@@ -17,15 +17,15 @@
                 <div class="col s10 offset-s1 m6 offset-m3 no-padding">
                     <form action="" method="get">
                         <div class="input-field col s12">
-                            <input type="text" name="username" id="">
+                            <input type="text" name="username" id="username">
                             <label for="username">Username</label>
                         </div>
                         <div class="input-field col s12">
-                            <input type="password" name="password" id="">
+                            <input type="password" name="password" id="password">
                             <label for="password">Password</label>
                         </div>
                         <div class="col s12">
-                            <button class="col s12 btn waves-effect waves-light" type="button">Signin</button>
+                            <button id="login" class="col s12 btn waves-effect waves-light" type="button">Signin</button>
                         </div>
                     </form>
                 </div>
@@ -41,5 +41,16 @@
 @endsection
 
 @section('scripts')
-<script src="{{ mix('js/app.js') }}"></script>
+<script src="{{ asset('js/login.js') }}"></script>
+ <script type="text/javascript">
+
+        $(document).ready(function(){
+          $("#login").click(function(){
+              attempt_login();
+          });
+          $("#forgot-password").click(function(){
+              forgot_password();
+          });
+        });
+      </script>
 @endsection

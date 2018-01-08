@@ -43,13 +43,14 @@ function loadDataInForm(data){
 }
 
 // get all subjects 
-function getSubjects(dept_name,semester){
+function getSubjects(dept_name,m_year,m_division,m_semester){
     $.post({
-        url: "demo.php",
-        data: {dept_name: dept_name, semester: semester},
-        // data:"{'data1':'"+value1+"','data2':'"+value2+"'}"
+        url: "/api/subject/of-class",
+        // data: {dept_name: dept_name, semester: semester},
+        data:{department:dept_name,year:m_year,division:m_division,semester:m_semester}
         success: function(result){
-            return result
+            console.log(result)
+            return result;
         }
     });
 }

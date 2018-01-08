@@ -189,7 +189,7 @@ var refreshMarks = function(){
 var loadSubjects = function(){
   console.log("loadSubjects() called") 
   //get the subjects from database
-  // subjects_json = getSubjects($("department_select").val(),$("semester_select").val())
+  subjects_json = getSubjects($("department_select").val(),$("year_select").val(),$("division_select").val(),$("semester_select").val())
   
   //remove earlier subject list
   $("#one-body").empty()
