@@ -1,0 +1,32 @@
+
+.no-padding-left{
+	padding-left: 0px !important;
+}
+.no-padding-right{
+	padding-right: 0px !important;
+}
+.no-padding-bottom{
+	padding-bottom: 0px !important;
+}
+.no-padding-top{
+	padding-top: 0px !important;
+}
+.margin-left{
+	margin-left: 10px;
+}
+.margin-right {
+	margin-right: 10px;
+}
+.no-margin{
+	margin: 0px;
+}
+
+.input-height-align{
+	height: 1.5rem !important;
+}
+.text-size-small{
+	font-size: 12.7px !important;
+}
+html {
+    font-size: 12.5px;
+}

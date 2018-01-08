@@ -16,7 +16,7 @@
         <link href="{{ mix('css/materialize.css') }}" rel="stylesheet" type="text/css">
         @yield('styles')
     </head>
-    <body>
+    <body @yield('body-attr')>
         @yield('content')
         
         <script src="{{ mix('js/manifest.js') }}"></script>

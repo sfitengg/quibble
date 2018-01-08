@@ -1,11 +1,12 @@
 .section-partition{
-	height: 100vh;
+	height: 90vh;
 	border-left: solid grey 1px;
+	border-color: #009687;
 	padding: 0px !important; 
 }
 
-#main-section{
-	
+#four-body{
+	visibility: hidden;
 }
 .logo-text {
   font-family: 'Dancing Script', cursive;
@@ -15,7 +16,8 @@
 	font-size: 20px;
 	padding-top: 5px;
 	padding-bottom: 3px;
-	color: teal;
+	background-color: #009688;
+	color: white;
 	border-bottom: solid 1px teal;
 
 }
