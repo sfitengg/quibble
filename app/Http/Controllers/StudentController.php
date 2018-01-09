@@ -104,11 +104,11 @@ class StudentController extends Controller
             'column_name'       => 'required|string',   //Represents column no. in excel
             'sheet_name'        => 'required',
         ];
-        /*try{
+        try{
             $this->validateInput($request->only(array_keys($rules)),$rules);
         }catch(Exception $e){
             return response()->json(['error'=>$e->getMessage()]);
-        }*/
+        }
         $studentList->setCustomSettings($request);
         $data = $studentList->handleImport();
 
