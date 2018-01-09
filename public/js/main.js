@@ -94,14 +94,14 @@ $("#add-question-group2").click(function(){
 
   while(question2_visiblity_count<7){
     question2_visiblity_count++;
-    if($("#tr-group2"+map(question2_visiblity_count)+"-id").is(":visible")){
-      continue;
-    }
-    else{
+    // if($("#tr-group2"+map(question2_visiblity_count)+"-id").is(":visible")){
+    //   continue;
+    // }
+    // else{
       $("#tr-group2"+map(question2_visiblity_count)+"-id").show();
       console.log("i am ececuted");
       break;
-    }
+    // }
   }
 });
 //add question to Q3
@@ -189,24 +189,24 @@ var refreshMarks = function(){
 var loadSubjects = function(){
   console.log("loadSubjects() called") 
   //get the subjects from database
-  subjects_json = getSubjects($("department_select").val(),$("year_select").val(),$("division_select").val(),$("semester_select").val())
-  //trial code---------------------
-  $.post({
-    url: "/api/subject/of-class",
-    data:{department:$("department_select").val(),year:$("year_select").val(),division:$("division_select").val(),semester:$("semester_select").val()},
-    success: function(result){
-      console.log(result)
-        //remove earlier subject list
-      $("#one-body").empty()
+  // subjects_json = getSubjects($("department_select").val(),$("year_select").val(),$("division_select").val(),$("semester_select").val())
+  // //trial code---------------------
+  // $.post({
+  //   url: "/api/subject/of-class",
+  //   data:{department:$("department_select").val(),year:$("year_select").val(),division:$("division_select").val(),semester:$("semester_select").val()},
+  //   success: function(result){
+  //     console.log(result)
+  //       //remove earlier subject list
+  //     $("#one-body").empty()
 
-      //fill new list
-      $.each(subjects_json.subjectlist,function(index,element){
-        // alert(element.text);
-        $("#one-body").append(" <a href='#!' class='subject-list-item collection-item'>"+element.text+"</a>");
-      });            
-    }
-  });
-  //trival end code --------------------------
+  //     //fill new list
+  //     $.each(subjects_json.subjectlist,function(index,element){
+  //       // alert(element.text);
+  //       $("#one-body").append(" <a href='#!' class='subject-list-item collection-item'>"+element.text+"</a>");
+  //     });            
+  //   }
+  // });
+  // //trial  code end--------------------------
   console.log(subjects_json)
 
   //remove earlier subject list

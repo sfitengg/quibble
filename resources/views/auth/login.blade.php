@@ -4,8 +4,8 @@
 
 @section('styles')
 
-      <link type="text/css" rel="stylesheet" href="{{asset('css/index.css')}}"  media="screen,projection"/>
-{{ asset('js/login.js') }}
+      <link type="text/css" rel="stylesheet" href="{{ asset('css/index.css') }}"  media="screen,projection"/>
+
 @endsection
 
 

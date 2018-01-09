@@ -11,9 +11,15 @@ var attempt_login = function(){
 			data:{email:$('#username').val(),password:$("#password").val()},
 			success:function(data){
 				console.log(data);
+				if(data['success']==1){
+					console.log("login successful")
+					window.location.href="/";
+				}
+				else
+					Materialize.toast(data.error);
 			}
 		});
-		alert("login successful")
+
 	}
 }
 

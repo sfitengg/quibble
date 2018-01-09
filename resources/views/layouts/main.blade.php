@@ -10,10 +10,10 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700" rel="stylesheet">
+        <!-- <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700" rel="stylesheet"> -->
         
         <!-- Styles -->
-        <link href="{{ asset('css/materialize.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/materialize.min.css') }}" rel="stylesheet" type="text/css">
         @yield('styles')
         <link href="https://fonts.googleapis.com/css?family=Asap+Condensed:500i" rel="stylesheet">
         <style>
