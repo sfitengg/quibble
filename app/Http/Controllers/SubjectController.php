@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 use App\Department;
 use App\ClassRoom;
-use App\MapClassSubject;
+use App\MapDepartmentSubject;
 use App\Subject;
 
 class SubjectController extends Controller
@@ -26,20 +26,20 @@ class SubjectController extends Controller
 			// Retrieve department ID
 			$department = Department::where('name','=',$request->department)->firstOrFail();
 		}catch(ModelNotFoundException $e){
-			return $this->sendFailedResponse("Given classroom was not found.");
+			return $this->sendFailedResponse("Given department was not found.");
 		}
-		try{
+		/* try{
 			// Retrieve classroom ID
 			$class = ClassRoom::where(['year'=>$request->year,
 				'department_id'=>$department->id,
 				'division'=>$request->division])->firstOrFail();
 		}catch(ModelNotFoundException $e){
 			return $this->sendFailedResponse("Given classroom was not found.");
-		}
+		} */
 		// Retrieve all associated subject ID
-    	$subjectList = MapClassSubject::where('class_id','=',$class->id)->pluck('subject_id');
+    	//$subjectList = MapDepartmentSubject::where('department_id','=',$department->id)->pluck('subject_id');
 		// Return all associated subject details
-		return response()->json(['success'=>1,'subjects'=>Subject::find($subjectList)]);
+		return response()->json(['success'=>1,'subjects'=>Subject::where(['sem'=>$request->semester,'department_id'=>$department->id])->get()]);
 	}
 	
 	/**

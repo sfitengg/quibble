@@ -3,9 +3,9 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\QueryException;
 
-class MapClassSubjectTableSeeder extends Seeder
+class MapDepartmentSubjectTableSeeder extends Seeder
 {
-    protected $_TABLE = 'map_class_subject';
+    protected $_TABLE = 'map_department_subject';
     /**
      * Run the database seeds.
      *
@@ -16,17 +16,17 @@ class MapClassSubjectTableSeeder extends Seeder
         DB::table($this->_TABLE)->truncate();
         
                 
-        $class = DB::table('class')->pluck('id');
+        $department = DB::table('departments')->pluck('id');
         $subject = DB::table('subjects')->pluck('id');
 
         //Convert above objects to array
-        $class = collect($class)->map(function($x){return $x;})->toArray();
+        $department = collect($department)->map(function($x){return $x;})->toArray();
         $subject = collect($subject)->map(function($x){return $x;})->toArray();
         for($i=0;$i<20;$i++){
             try{
                 DB::table($this->_TABLE)->insert([
                     'subject_id' => $subject[array_rand($subject)],
-                    'class_id' => $class[array_rand($class)],
+                    'department_id' => $department[array_rand($department)],
                 ]);
             }catch(Exception $e){}
         }

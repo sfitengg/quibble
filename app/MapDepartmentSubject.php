@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MapClassSubject extends Model
+class MapDepartmentSubject extends Model
 {
-    protected $table = 'map_class_subject';
+    protected $table = 'map_department_subject';
 
     public $timestamps = false;
 }
