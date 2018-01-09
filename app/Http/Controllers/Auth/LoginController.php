@@ -102,8 +102,17 @@ class LoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
+    /**
+     * Returns a response when the input parameter
+     * validation fails. It returns the first
+     * validation error that appears.
+     *
+     * @param Exception $e
+     * @return void
+     */
     protected function sendValidationFailedResponse(Exception $e){
-        return response()->json(['error'=>$e->getMessage()]);
+        $validationErrors = $e->getMessage()['validationErrors'];
+        return response()->json(['error'=>$validationErrors[0]]);
     }
 
     /**
@@ -149,7 +158,7 @@ class LoginController extends Controller
                 'token' => $token,
                 'token_type' => 'Bearer',
             ]
-        )->cookie('token',"Bearer $token",120,null,null,null,true);
+        )->cookie('token',$token,120,null,null,null,true);
     }
 
     /**

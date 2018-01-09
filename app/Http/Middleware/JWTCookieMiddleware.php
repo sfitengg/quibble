@@ -18,9 +18,10 @@ class JWTCookieMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $token = str_replace('Bearer ','',$request->cookie('token'));
+        $token = $request->cookie('token');
         if(!empty(trim($token))){
             // Copy the cookie token to request
+            // return response()->json([$token]);
             $request->request->add(['token'=>$token]);
         }
         return $next($request);
