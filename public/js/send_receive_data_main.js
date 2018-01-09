@@ -57,7 +57,7 @@ function getSubjects(dept_name,m_year,m_division,m_semester){
 
 // get all tests
 function getTests(dept_name,semester,subject){
-    $.post({
+    $.get({
         url: "demo.php",
         data: {'dept_name': dept_name, 'semester': semester, 'subject': subject},
         success: function(result){

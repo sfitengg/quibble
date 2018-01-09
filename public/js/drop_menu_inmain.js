@@ -3,26 +3,26 @@ $("#year_select").change(function(){
 	console.log("Year changed")
 	var year1,year2;
 	switch($(this).val()){
-		case "1":
+		case "FE":
 			year1 = 1;
 			year2 = 2;
 			update_semester(year1,year2)
 			console.log("Year 1 selected")
 			
 			break;
-		case "2":
+		case "SE":
 			year1 = 3;
 			year2 = 4;
 			update_semester(year1,year2)
 		
 			break;
-		case "3":
+		case "TE":
 			year1 = 5;
 			year2 = 6;
 			update_semester(year1,year2)
 		
 			break;
-		case "4":
+		case "BE":
 			year1 = 7;
 			year2 = 8;
 			update_semester(year1,year2)

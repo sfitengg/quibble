@@ -170,7 +170,6 @@ var refreshExams = function(){
   console.log("refreshExams() called")
   refreshStudents();
   $("#two-body").empty()
-
 }
 
 var refreshStudents = function(){
@@ -191,33 +190,29 @@ var loadSubjects = function(){
   //get the subjects from database
   // subjects_json = getSubjects($("department_select").val(),$("year_select").val(),$("division_select").val(),$("semester_select").val())
   
-  $.ajax({
-    url: "/api/subject/of-class",
-    type: "get",
-    data:{department:$("#department_select").val(),year:$("#year_select").val(),division:$("#division_select").val(),semester:$("semester_select").val()},
-    success: function(result){
-      console.log(result)
-        //remove earlier subject list
+  // $.ajax({
+  //   url: "/api/subject/of-class",
+  //   type: "get",
+  //   data:{department:$("#department_select").val(),year:$("#year_select").val(),division:$("#division_select").val(),semester:$("semester_select").val()},
+  //   success: function(result){
+  //     console.log(result)
+  //       //remove earlier subject list
       $("#one-body").empty()
 
-      //fill new list
-      $.each(result.subjects,function(index,element){
+  //     //fill new list
+      // $.each(result.subjects,function(index,element){
         // alert(element.text);
-        $("#one-body").append(" <a href='#!' data-id='"+element.id+"' class='subject-list-item collection-item'>"+element.name+"</a>");
-      });            
-    }
-  });
- 
-  // console.log(subjects_json)
+      //   $("#one-body").append(" <a href='#!' data-id='"+element.id+"' class='subject-list-item collection-item'>"+element.name+"</a>");
+      // });  
 
-  // //remove earlier subject list
-  // $("#one-body").empty()
-
-  // //fill new list
-  // $.each(subjects_json.subjects,function(index,element){
-  //   // alert(element.text);
-  //   $("#one-body").append(" <a href='#!' class='subject-list-item collection-item'>"+element.text+"</a>");
+      $.each(subjects_json.subjectlist,function(index,element){
+        // alert(element.text);
+        $("#one-body").append(" <a href='#!' data-id='"+element.id+"' class='subject-list-item collection-item'>"+element.text+"</a>");
+      });           
+  //   }
   // });
+ 
+
 }
 
 var loadExams = function(){ //subject

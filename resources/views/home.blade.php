@@ -1031,7 +1031,7 @@
                           <label for="test2d8"></label>
                         </p>
                       </td>
-                      <td class="co-9-class9">
+                      <td class="co-9-class">
                         <p>
                           <input value="co" name="group2d" type="radio" id="test2d9" />
                           <label for="test2d9"></label>
@@ -1471,7 +1471,7 @@
                           <label for="test3d5"></label>
                         </p>
                       </td>
-                      <td>
+                      <td >
                         <p>
                           <input value="co6" name="group3d" type="radio" id="test3d6" />
                           <label for="test3d6"></label>
@@ -1483,19 +1483,19 @@
                           <label for="test3d7"></label>
                         </p>
                       </td>
-                      <td class="co-8-class8">
+                      <td class="co-8-class">
                         <p>
                           <input value="co" name="group3d" type="radio" id="test3d8" />
                           <label for="test3d8"></label>
                         </p>
                       </td>
-                      <td class="co-9-class9">
+                      <td class="co-9-class">
                         <p>
                           <input value="co" name="group3d" type="radio" id="test3d9" />
                           <label for="test3d9"></label>
                         </p>
                       </td>
-                      <td class="co-10-class10">
+                      <td class="co-10-class">
                         <p>
                           <input value="co" name="group3d" type="radio" id="test3d10" />
                           <label for="test3d10"></label>
@@ -1723,9 +1723,9 @@
 
 
 @section('scripts')
-<script type="text/javascript" src="{{asset('js/drop_menu_inmain.js')}}"></script>  
-<script type="text/javascript" src="{{asset('js/send_receive_data_main.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/main.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/drop_menu_inmain.js') }}"></script>  
+<script type="text/javascript" src="{{ asset('js/send_receive_data_main.js')}}"></script>
+<script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 <script type="text/javascript">
 
   $(document).ready(function(){
