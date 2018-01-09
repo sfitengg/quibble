@@ -44,7 +44,7 @@ function loadDataInForm(data){
 
 // get all subjects 
 function getSubjects(dept_name,m_year,m_division,m_semester){
-    $.post({
+    $.get({
         url: "/api/subject/of-class",
         // data: {dept_name: dept_name, semester: semester},
         data:{department:dept_name,year:m_year,division:m_division,semester:m_semester},

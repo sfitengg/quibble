@@ -50,10 +50,10 @@
               <div class="col s6">
                 <select id="year_select">
                   <option value="" disabled selected>Year</option>
-                  <option value="1">FE</option>
-                  <option value="2">SE</option>
-                  <option value="3">TE</option>
-                  <option value="4">BE</option>
+                  <option value="FE">FE</option>
+                  <option value="SE">SE</option>
+                  <option value="TE">TE</option>
+                  <option value="BE">BE</option>
                 </select>
                 <label>Choose Year</label>
               </div>
@@ -61,9 +61,9 @@
 
                <select id="department_select">
                 <option value="" disabled selected>Department</option>
-                <option value="1">INFT</option>
-                <option value="2">COMPS</option>
-                <option value="3">EXTC</option>                        
+                <option value="IT">IT</option>
+                <option value="CMPN">COMPS</option>
+                <option value="EXTC">EXTC</option>                        
               </select>
             </div>
           </div>
@@ -72,8 +72,8 @@
             <div class="col s6">
               <select id="division_select">
                 <option value="" disabled selected>Division</option>
-                <option value="1">A</option>
-                <option value="2">B</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
               </select>
               <label>Choose Year</label>
             </div>
