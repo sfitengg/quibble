@@ -35,11 +35,13 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             // \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\JWTCookieMiddleware::class,
         ],
 
         'api' => [
             'throttle:60,1',
             'bindings',
+            \App\Http\Middleware\JWTCookieMiddleware::class,
         ],
     ];
 
@@ -58,6 +60,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'guest.jwt' => \App\Http\Middleware\RedirectIfAuthenticatedViaJwt::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'jwt.cookie' => \App\Http\Middleware\JWTCookieMiddleware::class,
         'jwt.auth' => Tymon\JWTAuth\Middleware\GetUserFromToken::class,
         'jwt.refresh' => Tymon\JWTAuth\Middleware\RefreshToken::class,
         'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,

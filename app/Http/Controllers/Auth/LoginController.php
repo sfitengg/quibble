@@ -147,9 +147,9 @@ class LoginController extends Controller
             [
                 'success' => 1,
                 'token' => $token,
-                'token_type' => 'bearer',
+                'token_type' => 'Bearer',
             ]
-        );
+        )->cookie('token',"Bearer $token",120,null,null,null,true);
     }
 
     /**
