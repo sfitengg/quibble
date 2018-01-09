@@ -6,34 +6,34 @@ question3_visiblity_count = 3;
 GLOBAL_SELECTED_SUBJECT = "";
 GLOBAL_SELECTED_TEST = "";
 var subjects_json = { 'subjectlist': [
-      { id: 0, text: 'Computer Graphics' },
-      { id: 1, text: 'Automata Theory' },
-      { id: 1, text: 'Automata Theory' },
-      { id: 1, text: 'Automata Theory' },
-      { id: 1, text: 'Automata Theory' },
-      { id: 1, text: 'Automata Theory' },
-      { id: 1, text: 'Automata Theory' },
-      { id: 1, text: 'Automata Theory' },
-      { id: 1, text: 'Automata Theory' },
-      { id: 1, text: 'Automata Theory' },
-      { id: 1, text: 'Automata Theory' },
-      { id: 1, text: 'Automata Theory' },
-      { id: 1, text: 'Automata Theory' },
-      { id: 1, text: 'Automata Theory' },
-      { id: 1, text: 'Automata Theory' },
-      { id: 1, text: 'Automata Theory' },
-      { id: 1, text: 'Automata Theory' },
-      { id: 1, text: 'Automata Theory' },
-      { id: 1, text: 'Automata Theory' },
-      { id: 2, text: 'Programming in C' }
-    ]};
+{ id: 0, text: 'Computer Graphics' },
+{ id: 1, text: 'Automata Theory' },
+{ id: 1, text: 'Automata Theory' },
+{ id: 1, text: 'Automata Theory' },
+{ id: 1, text: 'Automata Theory' },
+{ id: 1, text: 'Automata Theory' },
+{ id: 1, text: 'Automata Theory' },
+{ id: 1, text: 'Automata Theory' },
+{ id: 1, text: 'Automata Theory' },
+{ id: 1, text: 'Automata Theory' },
+{ id: 1, text: 'Automata Theory' },
+{ id: 1, text: 'Automata Theory' },
+{ id: 1, text: 'Automata Theory' },
+{ id: 1, text: 'Automata Theory' },
+{ id: 1, text: 'Automata Theory' },
+{ id: 1, text: 'Automata Theory' },
+{ id: 1, text: 'Automata Theory' },
+{ id: 1, text: 'Automata Theory' },
+{ id: 1, text: 'Automata Theory' },
+{ id: 2, text: 'Programming in C' }
+]};
 
 
 var exams_json = { 'examlist': [
-      { id: 0, text: 'IAT 1' },
-      { id: 1, text: 'IAT 2' },
-      { id: 2, text: 'IAT 3' }
-    ]};
+{ id: 0, text: 'IAT 1' },
+{ id: 1, text: 'IAT 2' },
+{ id: 2, text: 'IAT 3' }
+]};
 
 
 
@@ -74,13 +74,13 @@ function map(i){
 
   switch(i){
     case 4:
-      return "d"
-      break
+    return "d"
+    break
     case 5:
-      return "e"
-      break
+    return "e"
+    break
     case 6:
-      return "f"
+    return "f"
   }
 }
 
@@ -125,7 +125,7 @@ $("#load-subject").click(function(){
     if($("#department_select").val()!=null){
       if($("#division_select").val()!=null){
 
-          loadSubjects();
+        loadSubjects();
       }
       else{
         Materialize.toast('Please select a division', 4000)
@@ -190,7 +190,25 @@ var loadSubjects = function(){
   console.log("loadSubjects() called") 
   //get the subjects from database
   subjects_json = getSubjects($("department_select").val(),$("year_select").val(),$("division_select").val(),$("semester_select").val())
-  
+  //trial code---------------------
+  $.post({
+    url: "/api/subject/of-class",
+    data:{department:$("department_select").val(),year:$("year_select").val(),division:$("division_select").val(),semester:$("semester_select").val()},
+    success: function(result){
+      console.log(result)
+        //remove earlier subject list
+      $("#one-body").empty()
+
+      //fill new list
+      $.each(subjects_json.subjectlist,function(index,element){
+        // alert(element.text);
+        $("#one-body").append(" <a href='#!' class='subject-list-item collection-item'>"+element.text+"</a>");
+      });            
+    }
+  });
+  //trival end code --------------------------
+  console.log(subjects_json)
+
   //remove earlier subject list
   $("#one-body").empty()
 
@@ -227,10 +245,10 @@ var loadStudents = function(){
 }
 
 var loadMarks = function(){  //student
-  
+
   // var marks_json = getMarks($("department_select").val(),$("semester_select").val(),GLOBAL_SELECTED_SUBJECT,GLOBAL_SELECTED_TEST,student);
-    console.log("loadMarks() called")
-    $("#four-body").css('visibility', 'visible');
+  console.log("loadMarks() called")
+  $("#four-body").css('visibility', 'visible');
     // document.getElementById("marks-entry-form").reset();
 
   // if(student_json != false ){
@@ -253,7 +271,7 @@ var loadMarks = function(){  //student
     loadExams($(this).text())
   });
 
-   $('#one-body').on('dblclick','a.subject-list-item',function(){
+  $('#one-body').on('dblclick','a.subject-list-item',function(){
     console.log($(this).text()+"  double clicked")
     
   });

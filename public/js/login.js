@@ -2,7 +2,6 @@ var attempt_login = function(){
 	var id_set = check_id();
 	if(id_set)
 		var password_set = check_password()
-		
 	
 	if(id_set == password_set && password_set == true){
 		//load the main page
