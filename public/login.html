@@ -1,18 +1,16 @@
- <!DOCTYPE html>
-  <html>
-    <head>
-      <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+@extends('layouts.main')
+
+@section('title','| Login')
+
+@section('styles')
+
       <link type="text/css" rel="stylesheet" href="css/index.css"  media="screen,projection"/>
 
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+@endsection
 
-    <body>
 
+
+@section('content')
       <div id="app">
           <div class="row no-margin-bottom">
               <div class="col s12 m6 offset-m3 full-height v-align">
@@ -23,11 +21,11 @@
                     <div class="col s10 offset-s1 m8 offset-m2 no-padding">
                       <form action="" method="get">
                             <div class="input-field col s12">
-                                <input type="email"  name="username" id="uname">
+                                <input type="email"  name="username" id="username">
                                 <label for="username">Username</label>
                             </div>
                             <div class="input-field col s12">
-                                <input type="password" name="password" id="pass">
+                                <input type="password" name="password" id="password">
                                 <label for="password">Password</label>
                             </div>
                             <div class="col s12">
@@ -47,10 +45,10 @@
               </div>
           </div>
       </div>
+@endsection
 
-      <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-      <script type="text/javascript" src="js/materialize.min.js"></script>
+@section('scripts')
+     
       <script type="text/javascript" src="js/login.js"></script>
       <script type="text/javascript">
 
@@ -64,5 +62,4 @@
           });
         });
       </script>
-    </body>
-  </html>
+@endsection

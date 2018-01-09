@@ -7,9 +7,9 @@
 @section('styles')
   
   
-  <link type="text/css" rel="stylesheet" href="css/main.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="{{ asset('css/main.css') }}"  media="screen,projection"/>
 
-  <link type="text/css" rel="stylesheet" href="css/shortcut_css.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="{{ asset('css/shortcut_css.css') }}"  media="screen,projection"/>
   
   
 @endsection
@@ -1723,9 +1723,9 @@
 
 
 @section('scripts')
-<script type="text/javascript" src="js/drop_menu_inmain.js"></script>  
-<script type="text/javascript" src="js/send_receive_data_main.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="{{asset('js/drop_menu_inmain.js')}}"></script>  
+<script type="text/javascript" src="{{asset('js/send_receive_data_main.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/main.js')}}"></script>
 <script type="text/javascript">
 
   $(document).ready(function(){
