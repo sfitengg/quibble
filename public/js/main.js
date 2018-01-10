@@ -4,6 +4,7 @@ co_visiblity_count = 6;
 question2_visiblity_count = 3;
 question3_visiblity_count = 3;
 GLOBAL_SELECTED_SUBJECT = "";
+GLOBAL_SELECTED_SUBJECT_ID = "";
 GLOBAL_SELECTED_TEST = "";
 var subjects_json = { 'subjectlist': [
 { id: 0, text: 'Computer Graphics' },
@@ -190,42 +191,45 @@ var loadSubjects = function(){
   //get the subjects from database
   // subjects_json = getSubjects($("department_select").val(),$("year_select").val(),$("division_select").val(),$("semester_select").val())
   
-  // $.ajax({
-  //   url: "/api/subject/of-class",
-  //   type: "get",
-  //   data:{department:$("#department_select").val(),year:$("#year_select").val(),division:$("#division_select").val(),semester:$("semester_select").val()},
-  //   success: function(result){
-  //     console.log(result)
-  //       //remove earlier subject list
+  $.ajax({
+    url: "/api/department/"+$("#department_select").val()+"/subjects/sem/"+$("#semester_select").val(),
+    type: "get",
+    // data:{department:,year:$("#year_select").val(),division:$("#division_select").val(),semester:$("#semester_select").val()},
+    success: function(result){
+      console.log(result)
+        //remove earlier subject list
       $("#one-body").empty()
 
-  //     //fill new list
-      // $.each(result.subjects,function(index,element){
-        // alert(element.text);
-      //   $("#one-body").append(" <a href='#!' data-id='"+element.id+"' class='subject-list-item collection-item'>"+element.name+"</a>");
-      // });  
-
-      $.each(subjects_json.subjectlist,function(index,element){
-        // alert(element.text);
-        $("#one-body").append(" <a href='#!' data-id='"+element.id+"' class='subject-list-item collection-item'>"+element.text+"</a>");
-      });           
-  //   }
-  // });
+      //fill new list
+      $.each(result.subjects,function(index,element){
+        // alert(element.name);
+        $("#one-body").append(" <a href='#!' data-id='"+element.id+"' class='subject-list-item collection-item'>"+element.name+"</a>");
+      });            
+    }
+  });
  
 
 }
 
 var loadExams = function(){ //subject
   console.log("loadExams() called") 
-
+  
   // get tests from DB
   // exams_json = getTests($("department_select").val(),$("semester_select").val(),subject);
 
-  $.each(exams_json.examlist,function(index,element){
-    // alert(element.text);
-    $("#two-body").append(" <a href='#!' class='exam-list-item collection-item'>"+element.text+"<span class='badge setting-exam'><i class='tiny setting-exam material-icons'>build</i></span></a>");
-    // setting-exam class will be used to trigger modal for setting up exam details
-  });  
+  $.get({
+      url: "subject/"+GLOBAL_SELECTED_SUBJECT_ID+"/exams.php",
+      // data: {'dept_name': dept_name, 'semester': semester, 'subject': subject},
+      success: function(result){
+          
+        $.each(result.exams,function(index,element){
+          // alert(element.text);
+          $("#two-body").append(" <a href='#!' data-id='"+element.id+"'' class='exam-list-item collection-item'>"+element.name+"<span class='badge setting-exam'><i class='tiny setting-exam material-icons'>build</i></span></a>");
+          // setting-exam class will be used to trigger modal for setting up exam details
+        });  
+      }
+  });
+  
 }
 
 var loadStudents = function(){  
@@ -264,6 +268,7 @@ var loadMarks = function(){  //student
     selectItem($(this))
     refreshExams()
     GLOBAL_SELECTED_SUBJECT = $(this).text();
+    GLOBAL_SELECTED_SUBJECT_ID = $(this).attr('data-id');
     loadExams($(this).text())
   });
 
@@ -277,6 +282,17 @@ var loadMarks = function(){  //student
   $('#two-body').on('click','a.exam-list-item',function(e){
     //check if settings of exam is clicked
     if($(e.target).hasClass("setting-exam")){
+
+
+      // //check if the co has already been set or not
+      // alert(e.target.attr("data-id"))
+      // $.get({
+      //   url: "",
+      //   data: {},
+      //   success: function(result){
+
+      //   }
+      // )};
       // var data = coUpdateCheck($("#department_select").val(),$("#semester_select").val(),GLOBAL_SELECTED_SUBJECT,GLOBAL_SELECTED_TEST);
       $("#modal1").modal("open")
       // document.getElementById("co-form").reset();
