@@ -41,6 +41,7 @@ Route::group(['middleware'=>['jwt.refresh','jwt.auth']],function(){
 
     Route::group(['prefix'=>'classroom'],function(){
         Route::get('/{id}','ClassRoomController@getById');
+        Route::get('/{year}-{department}-{division}/students','ClassRoomController@getStudentsViaName');
         Route::get('/{id}/students','ClassRoomController@getStudents');
         Route::get('','ClassRoomController@getAll');
         Route::post('','ClassRoomController@post');

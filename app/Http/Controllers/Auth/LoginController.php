@@ -158,7 +158,7 @@ class LoginController extends Controller
                 'token' => $token,
                 'token_type' => 'Bearer',
             ]
-        )->cookie('token',$token,120,null,null,null,true);
+        )->cookie('token',$token,20160,null,null,null,true);
     }
 
     /**
@@ -185,7 +185,7 @@ class LoginController extends Controller
     {
         JWTAuth::invalidate(JWTAuth::getToken());
 
-        return redirect()->route('login');
+        return redirect()->route('login')->cookie('token','',-130);
     }
 
     /**
