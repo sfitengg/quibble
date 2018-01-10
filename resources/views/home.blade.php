@@ -29,7 +29,7 @@
 
             <!-- Dropdown Trigger -->
             
-            <li><a href="#!"><i class="material-icons right">account_circle</i> Logout</a></li>
+            <li><a id="logout-button" href="#!"><i class="material-icons right">account_circle</i> Logout</a></li>
             <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons right">more_vert</i></a></li>
 
           </ul>
@@ -61,9 +61,9 @@
 
                <select id="department_select">
                 <option value="" disabled selected>Department</option>
-                <option value="IT">IT</option>
-                <option value="CMPN">COMPS</option>
-                <option value="EXTC">EXTC</option>                        
+                <option value="1">IT</option>
+                <option value="2">COMPS</option>
+                <option value="3">EXTC</option>                        
               </select>
             </div>
           </div>
