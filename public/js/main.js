@@ -334,13 +334,10 @@ var loadMarks = function(){  //student
   });
 
   $("#logout-button").click(function(){
-    loadDataInForm(data)
-    // $.get({
-    //   url: "account/logout",
-    //   success: function(result){
-    //     window.location.href="";
-    //   }
-    // });
+    // loadDataInForm(data)
+    
+        window.location.href="/accounts/logout";
+      
   }); 
 
 // submit co form
