@@ -11,4 +11,9 @@ class ClassRoom extends Model
     public $timestamps = false;
 
     protected $guarded = ['id'];
+    
+    public function students()
+    {
+        return $this->hasMany('App\Student','class_id');
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 use App\ClassRoom;
 use App\Student;
@@ -28,12 +29,31 @@ class ClassRoomController extends Controller
     }
 
     public function getStudents(Request $request,$id){
-        $students = Student::where('class_id',$id)->paginate(15);
+        try{
+            $students = ClassRoom::findOrFail($id)->students()->paginate(15);
+        }catch(ModelNotFoundException $e){
+            return $this->sendFailedResponse('Invalid classroom id.');
+        }
         $students->appends(['token'=>JWTAuth::getToken()->get()])->links();
         $students = $students->toArray();
         $students['student'] = $students['data'];
         unset($students['data']);
         return $students;
+    }
+
+    public function getStudentsViaName(Request $request,$year,$department,$division)
+    {
+        try{
+            $classroom = ClassRoom::where([
+                'year'=>$year,
+                'department_id'=>$department,
+                'division'=>$division
+            ])->firstOrFail();
+        }catch(ModelNotFoundException $e){
+            return $this->sendFailedResponse('Invalid classroom name.');
+        }
+
+        return $this->getStudents($request,$classroom->id);
     }
     
     public function post(Request $request){
@@ -50,7 +70,7 @@ class ClassRoomController extends Controller
         }catch(Illuminate\Database\QueryException $e){
             
             if($e->getCode() == 1602)
-                return ['error'=>"{$request->name} already exists."];
+                return $this->sendFailedResponse("{$request->name} already exists.");
         }
         
     }
@@ -62,10 +82,22 @@ class ClassRoomController extends Controller
             return ['message'=>'Department deleted successfully'];
         }
 
-        return ['error'=>'Invalid id'];
+        return $this->sendFailedResponse("Invalid id.");
     }
 
     public function patch(Request $request){
 
+    }
+
+    /**
+     * Returns a failed reponse with an
+     * error message
+     *
+     * @param string $error
+     * @return void
+     */
+    public function sendFailedResponse(string $error)
+    {
+        return response()->json(['error'=>$error]);
     }
 }

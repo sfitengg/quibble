@@ -27,6 +27,7 @@ class SubjectController extends Controller
             return $this->sendFailedResponse('Invalid subject ID.');
         }
 
+        
         $examsList = $subject->mapExams()->pluck('exam_id');
         
         // Return all associated subject details
