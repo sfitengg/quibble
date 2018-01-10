@@ -55,7 +55,10 @@ function hideElementsOnStart(){
 }
 
 //show next CO
-$(".add-co-btn").click(function(){
+$(".add-co-btn").click(function (){
+  add_co();
+}); 
+function add_co(){
   while(co_visiblity_count<11){
     co_visiblity_count++;
     if($(".co-"+co_visiblity_count+"-class").is(":visible")){
@@ -67,7 +70,7 @@ $(".add-co-btn").click(function(){
     }
   }
   $(".co-7-class").show();
-}); 
+}
 
 function map(i){
   // this conversion is to convert number to appropriate letter, so the 
@@ -331,12 +334,13 @@ var loadMarks = function(){  //student
   });
 
   $("#logout-button").click(function(){
-    $.get({
-      url: "account/logout",
-      success: function(result){
-        window.location.href="";
-      }
-    });
+    loadDataInForm(data)
+    // $.get({
+    //   url: "account/logout",
+    //   success: function(result){
+    //     window.location.href="";
+    //   }
+    // });
   }); 
 
 // submit co form
