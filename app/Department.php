@@ -10,4 +10,14 @@ class Department extends Model
     public $timestamps = false;
 
     protected $fillable = ['name'];
+
+    public function subjects()
+    {
+        return $this->hasMany('App\Subject');
+    }
+
+    public function classRoom()
+    {
+        return $this->hasMany('App\ClassRoom');
+    }
 }

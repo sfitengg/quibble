@@ -11,4 +11,10 @@ class Subject extends Model
     public $timestamps = false;
 
     protected $guarded = ['id'];
+
+
+    public function mapExams()
+    {
+        return $this->hasMany('App\MapSubjectExam');
+    }
 }

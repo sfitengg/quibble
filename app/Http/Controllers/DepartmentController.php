@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 use Illuminate\Http\Request;
 use App\Department;
 use App\ClassRoom;
@@ -9,7 +11,7 @@ use App\ClassRoom;
 class DepartmentController extends Controller
 {
     public function __construct(){
-
+        $this->middleware('jwt.auth');
     }
 
     public function getAll(){
@@ -22,7 +24,39 @@ class DepartmentController extends Controller
     }
 
     public function getClass(Request $request,$id){
-        return ['class'=>ClassRoom::where('department_id',$id)->get()];
+        try{
+            return ['class'=>Department::findOrFail($id)->classRoom()->get()];
+        }catch(ModelNotFoundException $e){
+            return $this->sendFailedResponse('Invalid department id.');
+        }
+    }
+
+    /**
+     * Returns all the subjects associated with a particular
+     * classroom.
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function getSubjects(Request $request,$id,$sem=null)
+    {
+        try{
+            // Retrieve department ID
+            $department = Department::findOrFail($id);
+        }catch(ModelNotFoundException $e){
+            return $this->sendFailedResponse("Given department was not found.");
+        }
+        
+        $subjects = $department->subjects();
+
+        if($sem != null){
+            $subjects = $subjects->where('sem',$sem);
+        }
+        // Return all associated subject details
+        return response()->json([
+            'success' => 1,
+            'subjects' => $subjects->get(),
+        ]);
     }
     
     public function post(Request $request){
@@ -55,5 +89,17 @@ class DepartmentController extends Controller
 
     public function patch(Request $request){
 
+    }
+
+    /**
+     * Returns a failed reponse with an
+     * error message
+     *
+     * @param string $error
+     * @return void
+     */
+    public function sendFailedResponse(string $error)
+    {
+        return response()->json(['error'=>$error]);
     }
 }

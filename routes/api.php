@@ -30,6 +30,8 @@ Route::group(['middleware'=>['jwt.refresh','jwt.auth']],function(){
     
     Route::group(['prefix'=>'department'],function(){
         Route::get('/{id}','DepartmentController@getById');
+        Route::get('/{id}/subjects','DepartmentController@getSubjects');
+        Route::get('/{id}/subjects/sem/{sem}','DepartmentController@getSubjects');
         Route::get('','DepartmentController@getAll');
         Route::get('/{id}/classroom','DepartmentController@getClass');
         Route::post('','DepartmentController@post');
@@ -56,7 +58,7 @@ Route::group(['middleware'=>['jwt.refresh','jwt.auth']],function(){
     });
 
     Route::group(['prefix'=>'subject'],function(){
-        Route::get('/of-class','SubjectController@getClassSubjects');
+        Route::get('/{id}/exams','SubjectController@getExams');
     });
 
 
