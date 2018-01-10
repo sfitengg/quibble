@@ -66,7 +66,15 @@ function getTests(dept_name,semester,subject){
     });
 }
 
-function getStudents(dept_name,semester,subject){}
+function getStudents(dept_name,semester,subject){
+     $.get({
+        url: "/api/classroom/TE-IT-A/students",
+        data: {'dept_name': dept_name, 'semester': semester, 'subject': subject},
+        success: function(result){
+            return result
+        }
+    });
+}
 
 // check if the marks of a student are updated
 function getMarks(dept_name,semester,subject,test,student){}

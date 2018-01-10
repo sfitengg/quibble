@@ -144,7 +144,7 @@ $("#load-subject").click(function(){
 
 var selectItem = function(obj){
   console.log("selectItem() called:")
-  console.log(obj)
+  // console.log(obj)
   obj.siblings().removeClass("active")
   obj.addClass("active")
 }
@@ -218,10 +218,10 @@ var loadExams = function(){ //subject
   // exams_json = getTests($("department_select").val(),$("semester_select").val(),subject);
 
   $.get({
-      url: "subject/"+GLOBAL_SELECTED_SUBJECT_ID+"/exams.php",
+      url: "/api/subject/"+GLOBAL_SELECTED_SUBJECT_ID+"/exams",
       // data: {'dept_name': dept_name, 'semester': semester, 'subject': subject},
       success: function(result){
-          
+        console.log(result);
         $.each(result.exams,function(index,element){
           // alert(element.text);
           $("#two-body").append(" <a href='#!' data-id='"+element.id+"'' class='exam-list-item collection-item'>"+element.name+"<span class='badge setting-exam'><i class='tiny setting-exam material-icons'>build</i></span></a>");
@@ -238,10 +238,19 @@ var loadStudents = function(){
   // get Students from DB
   // student_json = getStudents($("department_select").val(),$("semester_select").val(),GLOBAL_SELECTED_SUBJECT);
 
-  $.each(subjects_json.subjectlist,function(index,element){
-    // alert(element.text);
-    $("#three-body").append(" <a href='#!'  class='student-list-item collection-item'>"+element.text+"</a>");
-  });
+
+  $.get({
+        url: "/api/classroom/"+$("#year_select").val()+"-"+$("#department_select").val()+"-"+$("#division_select").val()+"/students",
+        // data: {'dept_name': dept_name, 'semester': semester, 'subject': subject},
+        success: function(result){
+            
+            $.each(result.students,function(index,element){
+              // alert(element.text);
+              $("#three-body").append(" <a href='#!'  class='student-list-item collection-item'>"+element.name+"</a>");
+            });
+        }
+    });
+  
 }
 
 var loadMarks = function(){  //student
@@ -285,7 +294,7 @@ var loadMarks = function(){  //student
 
 
       // //check if the co has already been set or not
-      // alert(e.target.attr("data-id"))
+      console.log($(e.target).parent().parent().attr('data-id'))
       // $.get({
       //   url: "",
       //   data: {},
@@ -296,7 +305,7 @@ var loadMarks = function(){  //student
       // var data = coUpdateCheck($("#department_select").val(),$("#semester_select").val(),GLOBAL_SELECTED_SUBJECT,GLOBAL_SELECTED_TEST);
       $("#modal1").modal("open")
       // document.getElementById("co-form").reset();
-      console.log("Setting Exam: "+e.target)
+      console.log("Setting Exam: "+$(e.target).parent().parent().text()) 
       // if(data != false){
       //   //if the CO is updated in DB, then load it from DB
       //   loadDataInForm(data)
@@ -321,6 +330,14 @@ var loadMarks = function(){  //student
     loadMarks($(this).text())
   });
 
+  $("#logout-button").click(function(){
+    $.get({
+      url: "account/logout",
+      success: function(result){
+        window.location.href="";
+      }
+    });
+  }); 
 
 // submit co form
 // $("#submit-co").on("click",function(){
