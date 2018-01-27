@@ -28,8 +28,13 @@ class AddGenderToStudents extends Migration
     {
         // DB::statement('ALTER TABLE students DROP INDEX chk_gender;');
         Schema::table('students',function(Blueprint $table){
-            if (DB::connection()->getDoctrineSchemaBuilder()->hasIndex('users_remember_token_index'))
+            $conn = Schema::getConnection();
+            $dbSchemaManager = $conn->getDoctrineSchemaManager();
+            $doctrineTable = $dbSchemaManager->listTableDetails('student');
+
+            if ($doctrineTable->hasIndex('chk_gender')){
                 $table->dropIndex('chk_gender');
+            }
             
             $table->dropColumn('gender');
         });
