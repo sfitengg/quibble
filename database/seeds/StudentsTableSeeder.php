@@ -23,13 +23,18 @@ class StudentsTableSeeder extends Seeder
         $class = collect($class)->map(function($x){return $x;})->toArray();
         
         for($i=16100;$i<=16300;$i++){
+            $genderFull = ['male', 'female'];
+            $genderType = array_rand($genderFull);
+            $gender = strtoupper(substr($genderFull[$genderType],0,1));
             try{
-                DB::table($this->_TABLE)->insert([
+                $student = [
                     'uid'       => $i,
-                    'name'      => $faker->name,
+                    'name'      => $faker->name($genderFull[$genderType]),
                     'roll_no'   => $faker->numberBetween(1,80),
                     'class_id'  => $class[array_rand($class)],
-                ]);
+                    'gender'    => $gender,
+                ];
+                DB::table($this->_TABLE)->insert($student);
             }catch(Exception $e){}
         }
     }
