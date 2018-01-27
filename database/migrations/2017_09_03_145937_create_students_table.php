@@ -19,6 +19,7 @@ class CreateStudentsTable extends Migration
             $table->string('name');
             $table->integer('class_id')->unsigned();
             $table->string('profile_pic')->default(config('custom.storage.profile').'profile_default.png');
+            $table->integer('roll_no');
 
             $table->unique('uid');
             $table->foreign('class_id')->references('id')->on('class')

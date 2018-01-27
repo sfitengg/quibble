@@ -30,7 +30,7 @@ class AddGenderToStudents extends Migration
         Schema::table('students',function(Blueprint $table){
             $conn = Schema::getConnection();
             $dbSchemaManager = $conn->getDoctrineSchemaManager();
-            $doctrineTable = $dbSchemaManager->listTableDetails('student');
+            $doctrineTable = $dbSchemaManager->listTableDetails('students');
 
             if ($doctrineTable->hasIndex('chk_gender')){
                 $table->dropIndex('chk_gender');

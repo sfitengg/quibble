@@ -25,8 +25,10 @@ class AddUniqueClassidRollno extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::table('students',function(Blueprint $table){
             $table->dropUnique(['class_id','roll_no']);
         });
+        Schema::enableForeignKeyConstraints();
     }
 }
