@@ -26,7 +26,7 @@ class AddGenderToStudents extends Migration
      */
     public function down()
     {
-        DB::statement('ALTER TABLE students DROP CONSTRAINT chk_gender;');
+        DB::statement('ALTER TABLE students DROP INDEX chk_gender;');
         Schema::table('students',function(Blueprint $table){
             $table->dropColumn('gender');
         });
