@@ -1,7 +1,7 @@
 
 var data = {'group1':[
 {name: 'group1a', value: 'NA'},
-{name: 'group1b', value: 'co2'},
+{name: 'group1b', value: 'co7'},
 {name: 'group1c', value: 'co1'}
 ],
 'group2': [
@@ -15,6 +15,7 @@ var data1 = {'group1':[
 {name: '1c', value: '90'}
 ]
 };
+var co_default_visibility_count = 6;
 
 // load data in any form (data is json object of object arrays)
 function loadDataInForm(data){
@@ -31,6 +32,11 @@ function loadDataInForm(data){
             type = $el.attr('type');
             switch(type){
                 case 'radio':
+                var last_char = val.value[val.value.length - 1]
+                while(co_default_visibility_count < last_char ){
+                    add_co();
+                    co_default_visibility_count++;
+                }
                 $el.filter('[value="'+val.value+'"]').attr('checked', 'checked');
                 break;
                 default:
